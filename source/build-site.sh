@@ -7,7 +7,7 @@ rst2html5 --template templates/index-template.html \
           > ../index.html
 
 # Create the other pages and move them to their relative directories
-for f in content/pages/*.rst;
+for f in pages/*.rst;
 do
 	echo ${f}
 	FILENAME=`basename ${f}`
@@ -15,4 +15,8 @@ do
               ${f} \
               > ../pages/${FILENAME%.*}.html
 done
+
+# Copy resources out into the parent resources directory
+cp -R resources/* ../resources/
+
 

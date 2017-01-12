@@ -2,8 +2,6 @@
 Jeremy Kerr
 ===========
 
-Site under construction
-
-
+A software developer
 
 
