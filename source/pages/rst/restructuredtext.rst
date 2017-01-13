@@ -13,6 +13,7 @@ reStructuredText
 - `Unordered Lists`_
 - `Creating a Paragraph`_
 - `Embedding an image`_
+- `Embedding a parsed literal`_
 - `Embedding a code block`_
 
 Installing rst2pdf
