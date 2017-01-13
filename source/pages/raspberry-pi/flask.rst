@@ -7,10 +7,10 @@ Flask
 - `Install Flask`_
 - `Hello, World`_
 - `Web Access`_
-- `Local Host`_
-- `Remote Host`_
-- `Dynamic DNS`_
-- `Static DNS`_
+	+ `Local Host`_
+	+ `Remote Host`_
+	+ `Dynamic DNS`_
+	+ `Static DNS`_
 - `Start Application`_
 - `Stop Application`_
 
