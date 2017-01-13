@@ -132,6 +132,15 @@ Embedding an image
 		:alt:    alternate text
 		:align:  center
 
+Embedding a parsed literal
+--------------------------
+
+	*This is useful when you need to use escape characters.*
+
+.. parsed-literal:
+
+	Text exists, may include characters that need escaping
+
 Embedding a code block
 ----------------------
 
