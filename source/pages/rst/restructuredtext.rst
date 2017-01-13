@@ -105,6 +105,8 @@ Ordered Lists
 Unordered Lists
 ---------------
 
+.. code:: rst
+
 	- Bullet
 	+ Bullet
 	* Bullet

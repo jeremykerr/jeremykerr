@@ -66,11 +66,7 @@
         <p>/etc/iptables.pc.rules:</p>
         <p>..code:: bash</p>
         <blockquote>
-            <p><a href="#id1" id="id2" class="problematic">*</a>filter</p>
-            <div id="id1">
-                <h1>System Message: WARNING/2 (./pages/iptables/iptables.rst line 33) <a href="#id2">id2</a></h1>
-                <p>Inline emphasis start-string without end-string.</p>
-            </div>
+            <p>*filter</p>
             <p># Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0 -A INPUT -i lo -j ACCEPT -A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT</p>
             <p># Accept all established inbound connections -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</p>
             <p># Allow all outbound traffic -A OUTPUT -j ACCEPT</p>

@@ -30,7 +30,7 @@ Create rules file
 
 ..code:: bash
 
-	*filter
+	\*filter
 
 	# Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0
 	-A INPUT -i lo -j ACCEPT
