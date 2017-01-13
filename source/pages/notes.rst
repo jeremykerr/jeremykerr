@@ -2,22 +2,15 @@
 Notes
 =====
 
-Here is a lovely turtle
+Raspberry Pi
+------------
 
-.. image:: ../resources/images/turtle.jpg
-	:height: 360px
-	:width:  480px
-	:scale:  100%
-	:alt:    turtle strawberry
-	:align:  center
+- `Contents </pages/raspberry-pi/contents>`_
+- `Hardware </pages/raspberry-pi/hardware>`_
+- `Installation </pages/raspberry-pi/installation>`_
+- `Firewall </pages/raspberry-pi/firewall>`_
+- `Flask </pages/raspberry-pi/flask>`_
+- `PostgreSQL </pages/raspberry-pi/postgresql>`_
+- `Git </pages/raspberry-pi/git>`_
 
-He is eating a delicious strawberry
 
-A software developer
-
-.. code:: python
-
-  def test():
-    print "test"
-
-test
