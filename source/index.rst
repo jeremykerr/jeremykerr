@@ -2,7 +2,7 @@
 Home
 ====
 
-	New here? See `About </pages/about>`_.
+	New here? See `About </pages/about.html>`_.
 
 Recent Posts
 ------------
