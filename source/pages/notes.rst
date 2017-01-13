@@ -12,3 +12,12 @@ Here is a lovely turtle
 	:align:  center
 
 He is eating a delicious strawberry
+
+A software developer
+
+.. code:: python
+
+  def test():
+    print "test"
+
+test
