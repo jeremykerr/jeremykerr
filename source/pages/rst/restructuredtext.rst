@@ -137,7 +137,7 @@ Embedding a parsed literal
 
 	*This is useful when you need to use escape characters.*
 
-.. parsed-literal:
+.. parsed-literal::
 
 	Text exists, may include characters that need escaping
 
