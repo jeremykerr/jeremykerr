@@ -68,6 +68,16 @@
     </ul>
     <section id="install-flask">
         <h2>Install Flask</h2>
+        <blockquote>
+            <p><em>At the time this was written, Raspberry Pi did not support a version of Python 3 that met the requirements for installing and using Flask, so we'll be using Python 2.</em></p>
+            <ol type="1">
+                <li>Install <strong>pip</strong> (the Python Package Index) in order to install Flask.</li>
+            </ol>
+        </blockquote>
+        <pre data-language="bash">pi@web-dev ~ <span class="nv">$ </span>sudo apt-get install python-pip
+
+2. Install Flask</pre>
+        <pre data-language="bash">pi@web-dev ~ <span class="nv">$ </span>sudo pip install Flask</pre>
     </section>
     <section id="hello-world">
         <h2>Hello, World</h2>
