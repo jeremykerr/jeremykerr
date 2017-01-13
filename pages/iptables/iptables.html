@@ -45,8 +45,57 @@
 
     <h1>IP Tables</h1>
     <blockquote>
-        <p>Using IP Tables to accomplish basic networking functionality</p>
+        <p>This is a decent firewall configuration for a home PC running Linux. It allows internal traffic (127.0.0.1) while blocking traffic from the local network, allows you to create outbound connections, but doesn't allow incoming traffic to establish traffic that you didn't initiate. In order to apply this firewall, follow the steps in order from beginning to end.</p>
     </blockquote>
+    <ul>
+        <li><a href="#view-rules">View rules</a></li>
+        <li><a href="#create-rules-file">Create rules file</a></li>
+        <li><a href="#load-rules-from-file">Load rules from file</a></li>
+        <li><a href="#save-rules-to-file">Save rules to file</a></li>
+        <li><a href="#automatically-load-rules-on-startup">Automatically load rules on startup</a></li>
+    </ul>
+    <section id="view-rules">
+        <h2>View rules</h2>
+        <pre data-language="bash"><span class="nv">$ </span>sudo iptables --list
+<span class="nv">$ </span>sudo iptables  -S
+<span class="nv">$ </span>sudo iptables -L</pre>
+    </section>
+    <section id="create-rules-file">
+        <h2>Create rules file</h2>
+        <pre data-language="bash"><span class="nv">$ </span>sudo vi /etc/iptables.pc.rules</pre>
+        <p>/etc/iptables.pc.rules:</p>
+        <p>..code:: bash</p>
+        <blockquote>
+            <p><a href="#id1" id="id2" class="problematic">*</a>filter</p>
+            <div id="id1">
+                <h1>System Message: WARNING/2 (./pages/iptables/iptables.rst line 33) <a href="#id2">id2</a></h1>
+                <p>Inline emphasis start-string without end-string.</p>
+            </div>
+            <p># Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0 -A INPUT -i lo -j ACCEPT -A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT</p>
+            <p># Accept all established inbound connections -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</p>
+            <p># Allow all outbound traffic -A OUTPUT -j ACCEPT</p>
+            <p># Allow icmp (ping, router error messages, similar traffic) -A INPUT -p icmp -j ACCEPT</p>
+            <p># Reject all other inbound - default deny unless allowed -A INPUT -j REJECT -A FORWARD -j REJECT</p>
+            <p>COMMIT</p>
+        </blockquote>
+    </section>
+    <section id="load-rules-from-file">
+        <h2>Load rules from file</h2>
+        <pre data-language="bash"><span class="nv">$ </span>sudo iptables-restore &lt; /etc/iptables.pc.rules</pre>
+    </section>
+    <section id="save-rules-to-file">
+        <h2>Save rules to file</h2>
+        <pre data-language="bash"><span class="nv">$ </span>sudo iptables-save &gt; ~/iptables.up.rules
+<span class="nv">$ </span>sudo mv ~/iptables.up.rules /etc/</pre>
+    </section>
+    <section id="automatically-load-rules-on-startup">
+        <h2>Automatically load rules on startup</h2>
+        <pre data-language="bash"><span class="nv">$ </span>sudo vi /etc/network/if-pre-up.d/iptables</pre>
+        <p>/etc/network/if-pre-up.d/iptables:</p>
+        <pre data-language="sh"><span class="c">#!/bin/sh</span>
+
+/sbin/iptables-restore &lt; /etc/iptables.up.rules</pre>
+    </section>
 
 
 &copy; Jeremy Kerr, 2017

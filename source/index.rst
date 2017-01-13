@@ -7,6 +7,8 @@ Home
 Recent Posts
 ------------
 
-	*Nothing to show*
+- `IP Tables </pages/iptables/iptables.html>`_
+- `reStructuredText </pages/rst/restructuredtext.html>`_
+
 
 
