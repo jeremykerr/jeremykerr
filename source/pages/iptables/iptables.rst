@@ -28,7 +28,7 @@ Create rules file
 
 /etc/iptables.pc.rules:
 
-.. code:: bash
+.. parsed-literal::
 
 	\*filter
 

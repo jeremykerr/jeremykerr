@@ -64,22 +64,22 @@
         <h2>Create rules file</h2>
         <pre data-language="bash"><span class="nv">$ </span>sudo vi /etc/iptables.pc.rules</pre>
         <p>/etc/iptables.pc.rules:</p>
-        <pre data-language="bash"><span class="se">\*</span>filter
+        <pre>*filter
 
-<span class="c"># Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn&#39;t use lo0</span>
+# Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0
 -A INPUT -i lo -j ACCEPT
 -A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
 
-<span class="c"># Accept all established inbound connections</span>
+# Accept all established inbound connections
 -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
-<span class="c"># Allow all outbound traffic</span>
+# Allow all outbound traffic
 -A OUTPUT -j ACCEPT
 
-<span class="c"># Allow icmp (ping, router error messages, similar traffic)</span>
+# Allow icmp (ping, router error messages, similar traffic)
 -A INPUT -p icmp -j ACCEPT
 
-<span class="c"># Reject all other inbound - default deny unless allowed</span>
+# Reject all other inbound - default deny unless allowed
 -A INPUT -j REJECT
 -A FORWARD -j REJECT
 
