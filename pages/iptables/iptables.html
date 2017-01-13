@@ -64,16 +64,26 @@
         <h2>Create rules file</h2>
         <pre data-language="bash"><span class="nv">$ </span>sudo vi /etc/iptables.pc.rules</pre>
         <p>/etc/iptables.pc.rules:</p>
-        <p>..code:: bash</p>
-        <blockquote>
-            <p>*filter</p>
-            <p># Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0 -A INPUT -i lo -j ACCEPT -A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT</p>
-            <p># Accept all established inbound connections -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</p>
-            <p># Allow all outbound traffic -A OUTPUT -j ACCEPT</p>
-            <p># Allow icmp (ping, router error messages, similar traffic) -A INPUT -p icmp -j ACCEPT</p>
-            <p># Reject all other inbound - default deny unless allowed -A INPUT -j REJECT -A FORWARD -j REJECT</p>
-            <p>COMMIT</p>
-        </blockquote>
+        <pre data-language="bash"><span class="se">\*</span>filter
+
+<span class="c"># Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn&#39;t use lo0</span>
+-A INPUT -i lo -j ACCEPT
+-A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
+
+<span class="c"># Accept all established inbound connections</span>
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+<span class="c"># Allow all outbound traffic</span>
+-A OUTPUT -j ACCEPT
+
+<span class="c"># Allow icmp (ping, router error messages, similar traffic)</span>
+-A INPUT -p icmp -j ACCEPT
+
+<span class="c"># Reject all other inbound - default deny unless allowed</span>
+-A INPUT -j REJECT
+-A FORWARD -j REJECT
+
+COMMIT</pre>
     </section>
     <section id="load-rules-from-file">
         <h2>Load rules from file</h2>
