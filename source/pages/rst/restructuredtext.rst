@@ -140,7 +140,9 @@ Embedding a parsed literal
 
 .. parsed-literal::
 
-	Text exists, may include characters that need escaping
+    .. parsed-literal::
+
+        Text exists, may include characters that need escaping
 
 Embedding a code block
 ----------------------

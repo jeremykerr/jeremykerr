@@ -13,17 +13,28 @@ Recent Posts
 Links
 -----
 
+- `ahogrammer <ahogrammer.com>`_
 - `Coding Horror <https://blog.codinghorror.com/>`_
 - `Crafting Interpreters <http://www.craftinginterpreters.com/contents.html>`_
+- `David Gilbertson <https://medium.com/@david.gilbertson>`_
+- `Deep Learning (MIT Press) <http://www.deeplearningbook.org/>`_
 - `DefaultNameHere <https://defaultnamehere.tumblr.com/>`_
+- `Digital Signal Processing <http://dspguide.com/>`_
+- `Free Software Projects <http://www.fsf.org/campaigns/priority-projects/>`_
 - `Game Programming Patterns <http://gameprogrammingpatterns.com/>`_
 - `Gkbrk <https://gkbrk.com/>`_
+- `Ham Radio <http://www.kb6nu.com/study-guides/>`_
 - `inotify <http://man7.org/linux/man-pages/man7/inotify.7.html>`_
+- `Know it all <https://know-it-all.io/>`_
+- `Legal Concepts for Startups <https://handbook.clerky.com>`_
+- `Stripe Platform <https://blog.cronitor.io/lessons-learned-with-stripe-subscriptions-d6c8d408eb1#.4l33kacq2>`_
 - `stuffwithstuff <http://journal.stuffwithstuff.com/>`_
+- `Thingsboard <https://blog.thingsboard.io>`_
 - `Open Security Research <http://blog.opensecurityresearch.com/>`_
 
 APIs to explore
 ---------------
+
 - `Congress Data <https://www.congress.gov/>`_
 - `Government Climate Data <https://catalog.data.gov/organization/e811f0b4-451f-4896-9e8f-fc6802837819?metadata_type=geospatial&res_format=Esri+REST&groups=climate5434&tags=noaa>`_
 - `Government Open Data <https://project-open-data.cio.gov/engagement/>`_
@@ -35,7 +46,12 @@ Technology to explore
 
 - `Ace Web Editor <https://ace.c9.io/#nav=about>`_
 - `Apache HTTPD <https://httpd.apache.org/>`_
+- `HackMIT <https://code.hackmit.org>`_
+- `Kernel Virtual Machine <http://www.linux-kvm.org/page/Main_Page>`_
 - `Latex <https://www.lucidchart.com/techblog/2016/12/07/how-to-make-a-presentation-in-latex/>`_
+- `Let's Encrypt <https://letsencrypt.org/getting-started/>`_
+- `SELinux <https://selinuxproject.org/page/Main_Page>`_
+- `QueryStorm <https://www.querystorm.com>`_
 - `upstart <http://upstart.ubuntu.com/>`_
 - `uWSGI <http://uwsgi-docs.readthedocs.io/en/latest/>`_
 - `Popular Web Frameworks <https://github.com/showcases/web-application-frameworks>`_
