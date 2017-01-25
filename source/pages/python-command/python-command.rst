@@ -14,7 +14,7 @@ First, install the dependencies needed to create a terminal command which execut
     $ chmod u+x install-dependencies.sh
     $ sudo ./install-dependencies.sh
 
-The file is `here </resources/code/python-command/install-dependencies.sh>`_
+The file is `here </resources/code/python-command/install-dependencies.sh>`_.
 
 Installation Script
 -------------------
@@ -32,8 +32,11 @@ Next, download the installation script and the template script. Place them in th
 You can download each file at the following links:
 
 `install-app.sh </resources/code/python-command/install-app.sh>`_
+
 `template.sh </resources/code/python-command/template.sh>`_
+
 `main.py </resources/code/python-command/example/main.py>`_
+
 `requirements.txt </resources/code/python-command/example/requirements.txt>`_
 
 Now, to install, all you have to do is run the script. install-app.sh takes the following parameters:
