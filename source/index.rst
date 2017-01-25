@@ -7,6 +7,7 @@ Home
 Recent Posts
 ------------
 
+- `Python-Command </pages/python-command/python-command.html>`_ (2017-01-24)
 - `IP Tables </pages/iptables/iptables.html>`_ (2017-01-12)
 - `reStructuredText </pages/rst/restructuredtext.html>`_ (2017-01-12)
 
@@ -14,6 +15,7 @@ Links
 -----
 
 - `ahogrammer <ahogrammer.com>`_
+- `Bash Hackers <http://wiki.bash-hackers.org/>`_
 - `Coding Horror <https://blog.codinghorror.com/>`_
 - `Crafting Interpreters <http://www.craftinginterpreters.com/contents.html>`_
 - `David Gilbertson <https://medium.com/@david.gilbertson>`_

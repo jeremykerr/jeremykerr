@@ -41,17 +41,17 @@ You can download each file at the following links:
 
 Now, to install, all you have to do is run the script. install-app.sh takes the following parameters:
 
-+--------------+------+-------------------------------+
-| Status       | Flag | Parameter                     |
-+==============+======+===============================+
-| **Required** | -n   | <name-of-app>                 |
-+--------------+------+-------------------------------+
-| *Optional*   | -v   | <name-of-virtual-environment> |
-+--------------+------+-------------------------------+
-| *Optional*   | -r   | <name-of-requirements-file>   |
-+--------------+------+-------------------------------+
-| *Optional*   | -s   | <name-of-script-to-install>   |
-+--------------+------+-------------------------------+
++--------------+---------+-------------------------------+
+| Status       | Flag    | Parameter                     |
++==============+=========+===============================+
+| **Required** | -n      | <name-of-app>                 |
++--------------+---------+-------------------------------+
+| *Optional*   | -v      | <name-of-virtual-environment> |
++--------------+---------+-------------------------------+
+| *Optional*   | -r      | <name-of-requirements-file>   |
++--------------+---------+-------------------------------+
+| *Optional*   | -s      | <name-of-script-to-install>   |
++--------------+---------+-------------------------------+
 
 
 To install, you can call either of the following commands. They will result in the same installation.
