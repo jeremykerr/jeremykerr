@@ -29,9 +29,12 @@ Links
 - `inotify <http://man7.org/linux/man-pages/man7/inotify.7.html>`_
 - `Know it all <https://know-it-all.io/>`_
 - `Legal Concepts for Startups <https://handbook.clerky.com>`_
+- `Mikko Hypponen - Getting started in NetSec <https://www.reddit.com/r/IAmA/comments/5qgrm0/i_am_mikko_hypponen_i_hunt_hackers_im_here_to/dcz8suj/>`_
+- `Security Course <http://mooc.fi/courses/2016/cybersecurity/>`_
 - `Stripe Platform <https://blog.cronitor.io/lessons-learned-with-stripe-subscriptions-d6c8d408eb1#.4l33kacq2>`_
 - `stuffwithstuff <http://journal.stuffwithstuff.com/>`_
 - `Thingsboard <https://blog.thingsboard.io>`_
+- `Tosch <https://toschprod.wordpress.com/>`_
 - `Open Security Research <http://blog.opensecurityresearch.com/>`_
 
 APIs to explore
@@ -52,6 +55,8 @@ Technology to explore
 - `Kernel Virtual Machine <http://www.linux-kvm.org/page/Main_Page>`_
 - `Latex <https://www.lucidchart.com/techblog/2016/12/07/how-to-make-a-presentation-in-latex/>`_
 - `Let's Encrypt <https://letsencrypt.org/getting-started/>`_
+- `metasploit <https://www.metasploit.com/>`_
+- `NMAP <https://nmap.org/>`_
 - `SELinux <https://selinuxproject.org/page/Main_Page>`_
 - `QueryStorm <https://www.querystorm.com>`_
 - `upstart <http://upstart.ubuntu.com/>`_
@@ -62,11 +67,15 @@ Technology to explore
 Concepts to read up on
 ----------------------
 
+- `ACL <https://linux.die.net/man/5/acl>`_
+- `capabilities <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_
 - `LALR parser <https://en.wikipedia.org/wiki/LALR_parser>`_
 - `LL grammar <https://en.wikipedia.org/wiki/LL_grammar>`_
 - `LR parser <https://en.wikipedia.org/wiki/LR_parser>`_
 - `loghost <http://serverfault.com/questions/216819/etc-hosts-what-is-loghost-fresh-install-of-solaris-10-update-9>`_
 - `rsyslog <https://aelog.org/use-the-raspberry-pi-as-a-syslog-server-using-rsyslog/>`_
+- `setfacl <http://linuxcommand.org/man_pages/setfacl1.html>`_
 - `syslog <https://en.wikipedia.org/wiki/Syslog>`_
+- `WebSocket <https://en.wikipedia.org/wiki/WebSocket>`_
 
 
