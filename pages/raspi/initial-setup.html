@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>J. Kerr</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Raspberry Pi Setup</title>
+    <meta charset="utf-8" />
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+				data-target="#navigation-header-div" aria-expanded="false">
+				<span class="sr-only"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">JK</a>
+    	</div>
+
+		<div class="collapse navbar-collapse" id="navigation-header-div">
+			<ul class="nav navbar-nav">
+				<li><a href="/index.html">Home</a></li>
+				<li><a href="/pages/notes.html">Notes</a></li>
+				<li><a href="/pages/about.html">About</a></li>
+			</ul>
+		</div>
+
+	</div>
+</nav>
+
+
+    <h1>Raspberry Pi Setup</h1>
+    <blockquote>
+        <p>This shows how to get a Raspberry Pi available on a local area network in a reasonably secure way. This does not involve configuring the Raspberry Pi in great depth, but merely making the minimum number of changes to ensure that it can be accessed via SSH, using an RSA key-pair, with password authentication disabled and a static IP address set.</p>
+    </blockquote>
+    <section id="flash-image-to-micro-sd-card">
+        <h2>Flash Image to Micro SD Card</h2>
+        <p>First, download the image you want to use. I used the Jessie Lite image available from the official Raspberry Pi website (Raspian). After downloading the image, verify that the signature matches the signature displayed on the site in order to ensure that you haven't downloaded a modified image from a malicious entity.</p>
+        <pre data-language="bash"><span class="nv">$ </span>sha1sum 2017-01-11-raspbian-jessie-lite.zip</pre>
+        <p>Next, check which devices are currently mounted on your machine.</p>
+        <pre data-language="bash"><span class="nv">$ </span>df -h</pre>
+        <p>Plug your micro SD card into your computer and rerun the command. Find the new file system or systems that were mounted. Generally, if it's a blank SD card, you'll only see one new file system, but if you've flashed an image to it, you'll see two. In my case, I was reflashing an SD card, so I saw /dev/sdc1 and /dev/sdc2.</p>
+        <pre data-language="bash"><span class="nv">$ </span>df -h</pre>
+        <p>Unmount the file systems that are associated to your SD card. Be careful not to unmount any of the original filesystems you saw - if you accidentally unmount your primary or any other filesystems, you may wind up overwriting them, losing any data that may have been stored.</p>
+        <pre data-language="bash"><span class="nv">$ </span>umount /dev/sdc1
+<span class="nv">$ </span>umount /dev/sdc2</pre>
+        <p>Unzip the file image and flash it to the SD card. If the filesystems were called /dev/sdc1, /dev/sdc2, etc., the disk can be referenced as /dev/sdc. Basically take the basename, without the file system index (the integer at the end).</p>
+        <pre data-language="bash"><span class="nv">$ </span>unzip 2017-01-11-raspbian-jessie-lite.zip
+<span class="nv">$ </span>sudo dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>2017-01-11-raspbian-jessie-lite.img <span class="nv">of</span><span class="o">=</span>/dev/sdc
+<span class="nv">$ </span>sync</pre>
+        <p>Unplug the SD card and plug it into the Raspberry Pi. Be sure to have a keyboard and monitor plugged into it before powering it on, otherwise they may not be recognized.</p>
+    </section>
+    <section id="enable-ssh">
+        <h2>Enable SSH</h2>
+        <p>Log into the Raspberry Pi, using the default username "pi" and default password "raspberry". Once logged in, enter the config and use the Advanced Options to enable SSH.</p>
+        <pre data-language="bash"><span class="nv">$ </span>sudo raspi-config</pre>
+        <img alt="raspi config advanced options" src="../../resources/images/raspi/raspi-config-advanced-options.png" align="center" />
+        <img alt="raspi config select ssh" src="../../resources/images/raspi/raspi-config-ssh.png" align="center" />
+        <img alt="raspi config enable ssh" src="../../resources/images/raspi/raspi-config-enable-ssh.png" align="center" />
+        <img alt="raspi config success" src="../../resources/images/raspi/raspi-config-success.png" align="center" />
+        <p>Finally, reboot the Raspberry Pi to ensure the updated settings take effect. After this, you can unplug the monitor and keyboard, as they are no longer needed.</p>
+        <pre data-language="bash"><span class="nv">$ </span>sudo shutdown -r now</pre>
+    </section>
+    <section id="give-device-a-static-ip-address">
+        <h2>Give Device a Static IP Address</h2>
+        <p>For many applications, such as running a local web server or API, it is important that the Raspberry Pi has a static internal IP address, so that you don't have to update port forwarding rules or connection details every time your router or Raspberry Pi is rebooted. The easiest way to ensure this is to use your router's administration panel to give your Raspberry Pi a reserved IP address.</p>
+        <p>The process for this is different for every router, but it should follow something along the lines of logging into your router's admin page, navigating to a network settings panel, and reserving the IP address that your Raspberry Pi is currently using. This ensures that the Raspberry Pi will always be given the same IP address. After reserving your IP address, you may need to reboot your router.</p>
+        <p>Additionally, you can update the setting in your Raspberry Pi to make sure it always starts with the same IP address. If you do this instead of the DHCP reservation, be sure to pick an IP address outside the DHCP range, so that DHCP doesn't also assign the IP address selected to another device on the network, creating a conflict.</p>
+        <p>Log into your Raspberry Pi - if you've enabled SSH, you can do this by IP address as follows:</p>
+        <pre data-language="bash"><span class="c"># Update the IP address to be the IP address of your Raspberry Pi</span>
+<span class="c"># If you don&#39;t know the IP address of your Pi, you can use a</span>
+<span class="c">#     &quot;sudo arp-scan --localnet&quot; to find all IP addresses on your</span>
+<span class="c">#     local network and try logging into each of them</span>
+<span class="nv">$ </span>ssh pi@192.168.0.11
+<span class="c"># &lt;Enter password&gt;</span></pre>
+        <p>Once you've logged in, edit the <em>/etc/dhcpcd.conf</em> file to set the IP address you want your Raspberry Pi to have. These lines should be appended to the bottom of the file.</p>
+        <pre data-language="bash"><span class="c"># Set IP address to 192.168.0.11</span>
+interface eth0
+static <span class="nv">ip_address</span><span class="o">=</span>192.168.0.11/32
+static <span class="nv">routers</span><span class="o">=</span>192.168.0.1</pre>
+        <p>Note that your values for IP address and routers may be different. If you want the IP address to be in a range, modify the CIDR code associated with the IP address. /32 denotes that there are no bits in the bitmask, so the IP range only contains the one address specified.</p>
+        <p>After you've done this, reboot your Raspberry Pi, and ensure that it has the same address once it restarts that you specified.</p>
+        <pre data-language="bash"><span class="nv">$ </span>sudo shutdown -r now</pre>
+    </section>
+    <section id="establish-rsa-public-key-authentication">
+        <h2>Establish RSA Public Key Authentication</h2>
+        <p>On your local machine, generate an RSA Key.</p>
+        <pre data-language="bash"><span class="nv">$ </span><span class="nb">cd</span> ~/.ssh
+<span class="nv">$ </span>ssh-keygen -t rsa -b 4096</pre>
+        <p>Assuming you named it <em>id_rsa</em> and the public key is <em>id_rsa.pub</em>, you need to copy id_rsa.pub over to the Raspberry Pi and append it to the authorized_keys file.</p>
+        <pre data-language="bash"><span class="nv">$ </span><span class="nb">cd</span> ~/.ssh
+<span class="nv">$ </span>scp id_rsa.pub pi@192.168.0.11:/home/pi/.ssh/id_rsa.pub
+
+<span class="nv">$ </span>ssh pi@192.168.0.11
+<span class="nv">$ </span><span class="nb">cd</span> .ssh
+<span class="nv">$ </span>cat id_rsa.pub &gt;&gt; authorized_keys</pre>
+        <p>After this, you'll need to update the ssh settings on your Raspberry Pi.</p>
+        <pre data-language="bash"><span class="nv">$ </span>vi /etc/ssh/sshd_config</pre>
+        <p>Here, you'll need to change these two lines</p>
+        <pre data-language="bash"><span class="c"># Uncomment the line setting the authorized keys file:</span>
+AuthorizedKeysFile      %h/.ssh/authorized_keys
+
+<span class="c"># Disallow password login over ssh:</span>
+PasswordAuthentication no</pre>
+        <p>Finally, restart the Pi to make these changes take effect.</p>
+        <pre data-language="bash"><span class="nv">$ </span>sudo shutdown -r now</pre>
+        <p>On your local development machine, create a .ssh/config file if none exists, and append the host information for your Raspberry Pi.</p>
+        <pre data-language="bash"><span class="nv">$ </span>vi ~/.ssh/config
+
+Host    rpi
+    HostName        192.168.0.11
+    User            pi
+    Port            22
+    IdentityFile    ~/.ssh/id_rsa</pre>
+        <p>Now you should be able to log into the Raspberry Pi as follows:</p>
+        <pre data-language="bash"><span class="nv">$ </span>ssh rpi</pre>
+        <p>Depending on the default settings, you may need to edit the permissions of your key files before you will be allowed to use them for SSH authentication. In particular, you'll need to remove any permissions held by "group" or "other".</p>
+    </section>
+    <section id="changing-the-raspberry-pi-password">
+        <h2>Changing the Raspberry Pi Password</h2>
+        <p>This is a good policy - change the password from the default. Log into the Pi and run the "passwd" command to update the password. Follow the prompts.</p>
+        <pre data-language="bash"><span class="nv">$ </span>ssh rpi
+<span class="nv">$ </span>passwd</pre>
+    </section>
+
+
+&copy; Jeremy Kerr, 2017
+
+</body>
+
+</html>
