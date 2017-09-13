@@ -2,14 +2,14 @@
 About
 =====
 
-	I'm a software developer currently based out of Denver, CO. I am the most familiar with Python, PostgreSQL, SQLAlchemy, psycopg2, and AWS, though quickly adopting new technologies is a hobby of mine. The best technical book I've read in the last year is 'Infrastructure as Code' by Kief Morris. In it, he highlights the strengths of an infrastructure where configuration files drive functionality. The real benefits of infrastructure as code don't become apparent until infrastructure fails or software releases break, and need to be immediately brought back to the prior version.
+    I'm a software developer based out of Berkeley, CA. My current interests and skills are Ansible, AWS, Linux, Python, and SQL (specifically PostgreSQL). In general, however, I can pick up new skills fairly quickly. The most recent book I've read was "Simple Steps to Data Encryption" by Peter Loshin. It's a quirky narrative that introduces you to encryption and messaging using GPG, which I plan on using for a piece of software to help my Raspberry Pi cluster find and securely communicate with each other on an untrusted private network.
 
-	We live in the age of Cloud and IoT. Instead of managing tens of servers, we manage thousands. Jobs need to be broken down, run asynchronously, decentralized, and fault tolerant. The minimum viable product that includes user privacy and security is more difficult to achieve than it ever has been. The networking challenges associated with managing devices and DNS records, as well as interacting with legacy systems in a robust way are incredibly difficult, but tremendously fun.
+    One of the technical books I've enjoyed that had a huge bearing on my software development philosophy was "Infrastructure as Code" by Kief Morris. In it, Kief discusses the strengths and benefits of treating system configurations with the same level of care that you'd treat application code with. Primarily, versioning, templating, deciding what is configurable and what isn't, in order to ensure that software and applications that are launched in a production setting can easily be maintained and understood, and to greatly reduce the burden on operations teams.
 
-	This site exists as a place for me to create notes for myself and my ongoing projects, but my hope is that these will also help the unfortunate souls who find themselves here in attempts to solve their own problems.
+    My job involves keeping a few hundred devices online and sending data to an AWS Cloud environment with a few dozen servers with mixed jobs, in order to sell Energy Savings as a Service. As a one-size-fits-all developer on a very small team delivering an environmentally friendly offering, I have to be very smart about how I do everything in order to keep making forward progress. In the last few years I've had opportunities to work on everything from database administration to AWS management to network security and DNS to full stack application development. I don't claim to be an expert at any one thing, but I do take great pride in a deep skillset I've cultivated for the better part of a decade. This website is a place for me to keep notes, best practices, lessons learned, and anything else I feel might be useful. With any luck, it'll help out others as well.
 
-	Good luck,
+    Best regards,
 
-	*Jeremy Kerr*
+    *Jeremy*
 
 

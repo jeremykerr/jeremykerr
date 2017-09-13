@@ -56,13 +56,13 @@
     </ul>
     <section id="view-rules">
         <h2>View rules</h2>
-        <pre data-language="bash"><span class="nv">$ </span>sudo iptables --list
-<span class="nv">$ </span>sudo iptables  -S
-<span class="nv">$ </span>sudo iptables -L</pre>
+        <pre data-language="bash"><span></span>$ sudo iptables --list
+$ sudo iptables  -S
+$ sudo iptables -L</pre>
     </section>
     <section id="create-rules-file">
         <h2>Create rules file</h2>
-        <pre data-language="bash"><span class="nv">$ </span>sudo vi /etc/iptables.pc.rules</pre>
+        <pre data-language="bash"><span></span>$ sudo vi /etc/iptables.pc.rules</pre>
         <p>/etc/iptables.pc.rules:</p>
         <pre>*filter
 
@@ -87,18 +87,18 @@ COMMIT</pre>
     </section>
     <section id="load-rules-from-file">
         <h2>Load rules from file</h2>
-        <pre data-language="bash"><span class="nv">$ </span>sudo iptables-restore &lt; /etc/iptables.pc.rules</pre>
+        <pre data-language="bash"><span></span>$ sudo iptables-restore &lt; /etc/iptables.pc.rules</pre>
     </section>
     <section id="save-rules-to-file">
         <h2>Save rules to file</h2>
-        <pre data-language="bash"><span class="nv">$ </span>sudo iptables-save &gt; ~/iptables.up.rules
-<span class="nv">$ </span>sudo mv ~/iptables.up.rules /etc/</pre>
+        <pre data-language="bash"><span></span>$ sudo iptables-save &gt; ~/iptables.up.rules
+$ sudo mv ~/iptables.up.rules /etc/</pre>
     </section>
     <section id="automatically-load-rules-on-startup">
         <h2>Automatically load rules on startup</h2>
-        <pre data-language="bash"><span class="nv">$ </span>sudo vi /etc/network/if-pre-up.d/iptables</pre>
+        <pre data-language="bash"><span></span>$ sudo vi /etc/network/if-pre-up.d/iptables</pre>
         <p>/etc/network/if-pre-up.d/iptables:</p>
-        <pre data-language="sh"><span class="c">#!/bin/sh</span>
+        <pre data-language="sh"><span></span><span class="ch">#!/bin/sh</span>
 
 /sbin/iptables-restore &lt; /etc/iptables.up.rules</pre>
     </section>
