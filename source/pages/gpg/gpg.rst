@@ -2,7 +2,13 @@
 GnuPG
 ==============
 
+    What is it?
+    -----------
+
     GPG, or the Gnu Privacy Guard, is a tool that can be used to encrypt and decrypt data.
+
+    How can it be used?
+    -------------------
 
     Bob is a simple man, with simple ideas. Once, he tripped over a rock.
 
@@ -27,3 +33,8 @@ GnuPG
     "Well, whatever it is, sign me up! But how in tarnation can you expect us to make a plan using GPG? Won't Eve just read it and know what's going on? She has those neww NSA brand spy goggles that let her see everything! They can even see your soul! Well, except Mallory's." Bob continued to mumble about goggles for several moments until Alice cut him off.
 
     "Bob, remember that time you tripped and hit your head? Don't say, but remember the thing you tripped over? We'll use that word as our shared secret," Alice said, winking as she said secret, "and you can tell me when and where you'd like to meet using symmetric encryption."
+
+    How do we want to use it?
+    -------------------------
+
+    In this instance, I wanted to use GPG to make an IoT cluster living in a network I have no control over be self-healing. My devices are similar to Bob and Alice in the story. They need to be able to communicate securely, even though there are untrusted actors 
