@@ -1,40 +1,46 @@
 
 GnuPG
-==============
+=====
 
-    What is it?
-    -----------
+What is it?
+-----------
 
     GPG, or the Gnu Privacy Guard, is a tool that can be used to encrypt and decrypt data.
 
-    How can it be used?
-    -------------------
+How can it be used?
+-------------------
 
     Bob is a simple man, with simple ideas. Once, he tripped over a rock.
 
     Alice is Bob's friend. She is helpful, and was able to get Bob to the hospital when he tripped.
 
-    Eve is a bit of a gossip. She always knows what's going on, for better or worse. She suspected Bob and Alice might be more than friends. She thought they might be good friends! Eve was determined to find out.
+    Eve is a bit of a gossip. She always knows what's going on, for better or worse. She suspects Bob and Alice might be more than friends. She thinks they are good friends! Eve is determined to prove it.
 
     Mallory is a spiteful and bitter woman. Her singular goal in life is to trip up others. Once, she put a rock on Bob's front doorstep.
 
-    Bob, Alice, Eve, and Mallory, are all next door neighbors. One day, Bob decided he was going to hang out with Alice, so he gave her a phone call. When she picked up, he asked her if she wanted to go for a walk with him. Beaming, she agreed, and quickly ran to his front doorstep, only to find Eve waiting. Mallory spied on them from behind a bush.
+    Bob, Alice, Eve, and Mallory, are all next door neighbors. One day, Bob decides to hang out with Alice, so he gives her a phone call. When she picks up, he asks her if she wants to go for a walk with him. Beaming, Alice agrees, and quickly runs to his front doorstep, where she finds none other than the libelous Eve. Mallory spies at all of them from behind a bush.
 
-    "My goodness!" Alice exclaimed. "What on earth are you doing here, Eve?"
+    "My goodness!" Alice exclaims. "What on earth are you doing here, Eve?"
 
-    "I wanted to watch you and Bob go for a walk" replied Eve, breathing heavily.
+    "I simply wanted to watch you and Bob go for a walk," replies Eve, breathing heavily.
 
-    When Bob opened the door to find not one, but two people on his front doorstep, he fainted from pure shock, and was out for several hours. Alice eventually nursed him back to health, and after years of painful physical therapy, he made a full recovery from his surprise.
+    When Bob opens the door to find not one, but two people on his front doorstep, he faints from pure shock. He remains in a state of catatonic sleep for several hours, though Alice manages to nurse him back to health. Needless to say, their pleasant afternoon stroll does not happen.
 
-    "Golly Alice, I'd sure like to hang out with you, but I can't bear the thought of being surprised like that again!" Bob told her.
+    "Golly Alice, I'd sure like to hang out with you, but I can't bear the thought of being surprised like that again!" Bob tells her.
 
-    "Don't fret Bob, I have a plan! We'll use Gnu Privacy Guard, or GPG, to make a secret plan! I suspect Eve bugged your phone last time, and that's how she knew when to show up on your front porch." Alice replied.
+    "Not to fret Bob, I have a plan. We'll use Gnu Privacy Guard, or GPG, to make plans that even Eve won't be able to listen in on! Then, it will be just us, since she'll have no idea when to go to your front porch."
 
-    "Well, whatever it is, sign me up! But how in tarnation can you expect us to make a plan using GPG? Won't Eve just read it and know what's going on? She has those neww NSA brand spy goggles that let her see everything! They can even see your soul! Well, except Mallory's." Bob continued to mumble about goggles for several moments until Alice cut him off.
+    Alice walks Bob through basic encryption concepts. "Symmetric encryption is where you take a message, and you use a key to encode that data. Using GPG, the data cannot easily be decrypted without the key. As long as the key is something we know that Eve doesn't, we should be able to communicate without her snooping on us!" Alice then glares at Eve through the window, where Eve is unabashedly peering in. "The passphrase we'll use is the thing you tripped over that one time, when I took you to the hospital!" Alice tells Bob. After a few minutes scratching his head, Bob realizes the word Alice is describing is "rock", and gives her a great beaming smile. Eve, hearing the question and not able to figure out the answer, is unable to figure out what they're talking about.
 
-    "Bob, remember that time you tripped and hit your head? Don't say, but remember the thing you tripped over? We'll use that word as our shared secret," Alice said, winking as she said secret, "and you can tell me when and where you'd like to meet using symmetric encryption."
+    Wandering away dejectedly, Eve bumps into a rather surly looking Mallory. Giving into her only instinct, Eve tells her exactly what happened, including the question, in excrutiating detail. "Rock!" Mallory cries out happily. "Bob tripped over a rock. I put it there."
 
-    How do we want to use it?
-    -------------------------
+    Smiling, the disastrous duo wander over to Eve's house to listen in on the next message. Alice, by now, has made it home, and decides to give Bob a call. On her computer, she uses GPG and the passphrase "rock" to encrypt the message "Meet me on your doorstep in 5 minutes!"
+
+    Bob's phone rings, and he smiles as Alice begins saying a series of seemingly random letters. He types them into his computer, and uses GPG to decrypt them using the passphrase. "Ooh!" he chirps happily. "She'll be here in five minutes! I'd better put my shoes on!"
+
+    Little do they know, Eve and Mallory have also decrypted the message, and with a few moments to spare, they burst from Eve's home and dash to Bob's front door. When Alice arrives, she is understandably shocked.
+
+How do we want to use it?
+-------------------------
 
     In this instance, I wanted to use GPG to make an IoT cluster living in a network I have no control over be self-healing. My devices are similar to Bob and Alice in the story. They need to be able to communicate securely, even though there are untrusted actors 
