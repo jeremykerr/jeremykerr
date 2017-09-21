@@ -2,7 +2,7 @@
 About
 =====
 
-    I'm a software developer based out of Berkeley, CA. My current interests and skills are Ansible, AWS, Linux, Python, and SQL (specifically PostgreSQL). In general, however, I can pick up new skills fairly quickly. The most recent book I've read was "Simple Steps to Data Encryption" by Peter Loshin. It's a quirky narrative that introduces you to encryption and messaging using GPG, which I plan on using for a piece of software to help my Raspberry Pi cluster find and securely communicate with each other on an untrusted private network.
+    I'm a software developer based out of Berkeley, CA. My current interests and skills are Ansible, AWS, Linux, Python, and SQL (specifically PostgreSQL). In general I can pick up new skills quickly. The last book I read was "Simple Steps to Data Encryption" by Peter Loshin. It's a quirky narrative that introduces you to encryption and messaging using GPG, which I plan on using for an IoT platform I'm building in my spare time.
 
     One of the technical books I've enjoyed that had a huge bearing on my software development philosophy was "Infrastructure as Code" by Kief Morris. In it, Kief discusses the strengths and benefits of treating system configurations with the same level of care that you'd treat application code with. Primarily, versioning, templating, deciding what is configurable and what isn't, in order to ensure that software and applications that are launched in a production setting can easily be maintained and understood, and to greatly reduce the burden on operations teams.
 
