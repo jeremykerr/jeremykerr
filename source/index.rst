@@ -20,4 +20,4 @@ My Notes
 Some interesting resources
 --------------------------
 
-- `My interests </my-interests.html>`_
+- `My interests </pages/my-interests.html>`_
