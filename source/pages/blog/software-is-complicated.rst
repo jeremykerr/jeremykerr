@@ -1,0 +1,101 @@
+
+Software is Complicated
+=======================
+
+It’s Sunday morning. After another horrific sunrise, I realize I can’t just lay in bed anymore. It’s too bright for me to enjoy myself. So, casually rolling off the bed and onto the floor, I spring into action. Time to set some goals.
+
+Goals
+-----
+
+1. Install Xen Hypervisor on my PC.
+2. Darn it, I can’t finish #1 without configuring an internet connection on my PC.
+3. Darn it double time, I can’t do step 2 without configuring the firewall on my PC.
+4. Heckin darn it, I haven’t configured the firewall on my laptop yet, so I don’t have a firewall configuration to push to my PC anyway.
+
+Time to get to work
+-------------------
+
+Guess I’ll work my way up the list. Fortunately, I took some notes in January about setting up an ideal baseline firewall configuration for my workstations, that can then be tweaked to match changing requirements. It allows all traffic from localhost, allows established connections, allows all outbound traffic, and allows ping requests.
+
+In these notes, the first thing I find is a big heading, “View Rules”, so I start with that. Unexpectedly, I find a whole bunch of Docker rules littered throughout my IPTables rules. Sad! This isn’t bad, in and of itself, but it throws a wrench in the monkey works. If I want to be able to use Docker normally, I have to make sure I don’t blast its rules to kingdom come when I apply my own IPTables firewall using Ansible (which I’ve been applying all of my settings through so I don’t have to go through this brain damage every time I decide to rebuild one of my computers).
+
+A little research on the world wide web shows a rather contentious history around the Docker rules. It appears that in an older version of Docker, binding to a container port would, by default, open up that container to the entire world, not just the network available through an existing IPTables configuration! That’s not desirable at all. My Docker containers should only be exposed if I choose to expose them! Trying not to shake with too much rage, I decide to research how to prevent Docker from doing anything with IPTables. I can come back and punch deliberate holes in my firewall at a later time of my choosing, but security is more important to me than containerization for the time being. Time to add another task to complete.
+
+Goals, Part II
+--------------
+
+5. Disable Docker’s control over IPTables.
+
+The Docker documentation shows that if I add a handy “--iptables=false” flag to my Docker daemon, it won’t do anything with the firewall. Neato! But where can I find the daemon? How do I add the setting? I decide to do some digging.
+
+6. Find the Docker daemon.
+
+I know what I'm doing!
+----------------------
+
+It looks like in systems using systemd, the daemon lives in “/etc/systemd/system/docker.service.d/”, but that path doesn’t exist for me. I’m running a system using upstart, so my Docker configuration seems to live in “/etc/default/docker”. Neat! Looks like I get to cross item 6 off my list.
+
+After writing some Ansible code to add the “--iptables=false” flag to my daemon options, I go ahead and rerun my configuration. I review the file, just to be sure the changes I’d hoped for are correctly implemented, and sure enough, they are! Now, since IPTables rules don’t persist after a reboot, all I have to do is restart my computer and I should be good to go!
+
+Err... Maybe not
+----------------
+
+Unfortunately, life is never that easy. After rebooting my computer, I find that all of the IPTables rules for Docker are still there. I must have bungled something up. Spending some time with my dear friend Google, I find a few possibilities.
+
+- The iptables=false flag has been misunderstood by a number of loud developers, so maybe its behavior was changed.
+- I may have entered the flag wrong, though I find a number of other developers using exactly the same configuration as I am, character for character, so that doesn’t seem likely.
+- Maybe my operating system implemented some breaking changes, it appears that on the Debian version just before the one I’m using, Docker was installed under systemd, though I confirm that my system is definitely using Upstart.
+
+I have no idea what I’m doing.
+
+Crying and tearing my hair out
+------------------------------
+
+So, I go totally bonkers. Reading through the documentation in depth, I apply any and every setting that looks like it might be remotely relevant. IP Forwarding? Disabled. IP masquerading? Disabled. IPv6? Disabled. I’m going all-in, baby. My desperation is climbing to daring new heights.
+
+Naturally, my efforts are futile. Tearing my hair out, I decide to try something I avoid at all costs. Checking the logs. Reading the daemon script, “/etc/init.d/docker”, I find that the log files should be stored in “/var/log/docker”, or “/etc/default/daemon.log”. Feeling fresh hope, I check those files.
+
+They don’t exist. Screaming incoherently and crying seems like my next best option.
+
+Naturally, I go back to the documentation. Day of days! It seems that the command “journalctl -u docker.service” should give me the answers I seek. I run that command, and am face to face with the holy grail. My beautiful logs. All 14 lines or so. But there’s nothing remotely useful, other than an “auplink executable not found” warning. My sources online tell me it’s a harmless warning that won’t affect usability, and since the warning takes place when Docker is trying to unmount something, I assume this may be a memory leak at worst. Certainly a concern, but not critical.
+
+Going nuclear
+-------------
+
+Time to take the nuclear option. I drop my flags directly into the daemon startup script. Forget Ansible. Forget the default configuration location. I’m going to figure this out, no matter the cost. Unfortunately, the result is the same. I’m beginning to lose hope that this is an issue I can overcome on my own. Maybe it’s a bug. Finding one post after another where people did exactly what I’m doing and had my desired result doesn’t make me feel any better. By all accounts, I seem to be doing everything exactly right.
+
+But then I take a step back. Maybe the issue isn’t whether I’ve picked the correct options, but whether the options are being included at all. Working from a hunch, I decide to check whether I can find anyone having trouble getting Docker to accept options at all. Sure enough, some scrubs running Ubuntu started having issues around May 2015 with their flags being accepted. Apparently, versions 17 and up expect the daemon flags to be included in “/etc/docker/daemon.json”, regardless of whether they’re using upstart or systemd. Which version am I using? 17.06.
+
+I did it!
+---------
+
+That was it, I’m afraid. Once I used Ansible to apply a settings file in the correct location, with my flags formatted in JSON, everything worked exactly the way I wanted. Now, I can get on with my life and start working on my own firewall, since I don’t have one in my way.
+
+Too bad the day is almost over. Granted, this didn’t take all day – I worked out, got lunch with my girlfriend, did some grocery shopping, but even so, I’m not expecting to make too much more progress tonight.
+
+What have I learned?
+--------------------
+
+So, what have I learned?
+
+1. Software is an ecosystem. If I had installed Docker after setting up a firewall, I probably never would have noticed these IPTables changes, and if I had, I might not have cared. This would have been better for my timeline, but then I wouldn’t have realized how Docker containers are open to the world, and I might have made some glaring mistakes with the security model, built on some false assumptions.
+
+2. Timelines are extremely difficult. I expected to make some progress today, but instead had a battle of attrition with an existing model. If I were at work, I’d have opened a number of new tickets, and not closed a single one, and even though these issues were important to work through, it would be difficult to explain to nontechnical project leads why I was spending time working with components completely unrelated to the task at hand. However, I learned an incredible amount. My understanding of Docker’s model is more complete, and I have a firewall I can control.
+
+3. Goals are complex. On the surface, each goal seems totally reasonable. Install Xen. Blocked until I have a secure PC capable of accessing the internet. Install a firewall. Blocked until I can disentangle existing tools from a firewall. Use the tool’s controls to prevent it from making changes to the firewall. Difficult because of competing legacy documentation and community answers that are no longer true.
+
+4. Security requires constant attention. It is not a feature, it needs to be baked into every part of an application, and it needs to be layered. Inevitably, mistakes will be made. If I have good user access control, a local firewall that is more permissive than I realize won’t end me. If I’m hidden behind an AWS firewall, a local firewall may not even be needed. If I’m using a hypervisor to run my machine, I may have additional controls that make this a nonissue. However, if I build an application and try to apply security to it later, it’ll be far more difficult. Installation is easily the best time to change things and set standards, since you don’t have all that legacy code to go back to and bring into compliance.
+
+5. Moving forward sometimes means moving backward. Though I had Docker installed this morning, and I was happy with it, in the evening not only do I not have Xen Hypervisor installed, I’ve actually broken my Docker installation. This is good from a security perspective, since I have a more secure base system, but bad from a delivery perspective, which is the only thing that can keep startups alive. If I was doing this at my job, it’s extremely likely I would have noted the issue in our project management system so it could be prioritized and discussed with the team, before pursuing some shortcuts to meet immediate goals, but since this is something I’m just doing for fun, I can be selfish and nitpicky.
+
+6. Documentation can be wrong or misleading. Factor some time into your software timelines to adjust for the fact that most of the software out there today is a work in progress, and the hip new framework you may want to use for a production application is likely to have a security model and defaults that are far from perfect, and even farther from being accessible in the latest documentation and tutorials. You’re going to have to believe in yourself, and push forward even when it seems like there’s not a way to get it done sometimes.
+
+7. Computer science is still a science. You will make mistakes. What you think is the correct direction to take won’t always be right. Treat every goal like a hypothesis, and treat every step you take as an experiment. Sometimes, it’ll become obvious that you’re fighting a losing battle, and you’ll need to take a different approach. You’ve got to know when to give up and when to keep pushing.
+
+8. Have some ethics. Your users deserve a secure platform, they deserve privacy, they deserve to be treated like people. If you’re more concerned with getting paid than you are with delivering a quality product, you’re no better than the big companies that have never ending data leaks resulting in everything from identity theft to fraud.
+
+9. Have some fun. Software development can be frustrating, but also invigorating and satisfying. Even if you don’t always wind up doing what you expected, you’ll usually get something out of it if you challenge yourself.
+
+Cheers,
+
+Jeremy
