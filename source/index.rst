@@ -17,7 +17,3 @@ My Notes
 - `IP Tables </pages/iptables/iptables.html>`_ (2017-01-12)
 - `reStructuredText </pages/rst/restructuredtext.html>`_ (2017-01-12)
 
-Some interesting resources
---------------------------
-
-- `My interests </pages/my-interests.html>`_
