@@ -1,6 +1,6 @@
 
-My interests
-============
+Interests
+=========
 
     So, nothing too exciting to see here. A lot of these links are bound to be dead. This is just a place for me to keep a list of things I may be interested in in the future. Most of these are things I have not explored, except the blogs. The bloggers included below are a lot of fun.
 
