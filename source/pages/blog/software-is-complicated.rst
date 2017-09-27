@@ -21,14 +21,9 @@ In these notes, the first thing I find is a big heading, “View Rules”, so I 
 
 A little research on the world wide web shows a rather contentious history around the Docker rules. It appears that in an older version of Docker, binding to a container port would, by default, open up that container to the entire world, not just the network available through an existing IPTables configuration! That’s not desirable at all. My Docker containers should only be exposed if I choose to expose them! Trying not to shake with too much rage, I decide to research how to prevent Docker from doing anything with IPTables. I can come back and punch deliberate holes in my firewall at a later time of my choosing, but security is more important to me than containerization for the time being. Time to add another task to complete.
 
-Goals, Part II
---------------
-
 5. Disable Docker’s control over IPTables.
 
 The Docker documentation shows that if I add a handy “--iptables=false” flag to my Docker daemon, it won’t do anything with the firewall. Neato! But where can I find the daemon? How do I add the setting? I decide to do some digging.
-
-6. Find the Docker daemon.
 
 I know what I'm doing!
 ----------------------

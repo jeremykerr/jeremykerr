@@ -61,16 +61,10 @@
         <p>Guess I’ll work my way up the list. Fortunately, I took some notes in January about setting up an ideal baseline firewall configuration for my workstations, that can then be tweaked to match changing requirements. It allows all traffic from localhost, allows established connections, allows all outbound traffic, and allows ping requests.</p>
         <p>In these notes, the first thing I find is a big heading, “View Rules”, so I start with that. Unexpectedly, I find a whole bunch of Docker rules littered throughout my IPTables rules. Sad! This isn’t bad, in and of itself, but it throws a wrench in the monkey works. If I want to be able to use Docker normally, I have to make sure I don’t blast its rules to kingdom come when I apply my own IPTables firewall using Ansible (which I’ve been applying all of my settings through so I don’t have to go through this brain damage every time I decide to rebuild one of my computers).</p>
         <p>A little research on the world wide web shows a rather contentious history around the Docker rules. It appears that in an older version of Docker, binding to a container port would, by default, open up that container to the entire world, not just the network available through an existing IPTables configuration! That’s not desirable at all. My Docker containers should only be exposed if I choose to expose them! Trying not to shake with too much rage, I decide to research how to prevent Docker from doing anything with IPTables. I can come back and punch deliberate holes in my firewall at a later time of my choosing, but security is more important to me than containerization for the time being. Time to add another task to complete.</p>
-    </section>
-    <section id="goals-part-ii">
-        <h2>Goals, Part II</h2>
         <ol start="5" type="1">
             <li>Disable Docker’s control over IPTables.</li>
         </ol>
         <p>The Docker documentation shows that if I add a handy “--iptables=false” flag to my Docker daemon, it won’t do anything with the firewall. Neato! But where can I find the daemon? How do I add the setting? I decide to do some digging.</p>
-        <ol start="6" type="1">
-            <li>Find the Docker daemon.</li>
-        </ol>
     </section>
     <section id="i-know-what-i-m-doing">
         <h2>I know what I'm doing!</h2>
