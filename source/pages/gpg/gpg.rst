@@ -56,4 +56,6 @@ To decrypt a file, use the -d flag. Optionally, you can use the -i flag in order
     gpg -d -i
     gpg -d /encrypted/input/file
 
+Shared Secret
+~~~~~~~~~~~~~
 
