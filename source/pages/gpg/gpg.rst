@@ -59,3 +59,13 @@ To decrypt a file, use the -d flag. Optionally, you can use the -i flag in order
 Shared Secret
 ~~~~~~~~~~~~~
 
+    In order to perform symmetric encryption, a shared secret is required. A shared secret is something known to all friendly parties involved in the communication, but not known to any eavesdroppers or malicious third parties.
+
+    Depending on your use case, you should have a healthy amount of paranoia surrounding your shared secret. If the data you want to protect is of little consequence, or you're just trying to hide communication from a relative or friend, you can probably share a secret over the phone or some other method. If you're worried about three letter agencies or international corporations, you may want to take greater precaution. In that case exchanging a shared secret in person is probably the only reliable method. Because this isn't always feasible, key based encryption may be more desirable.
+
+Keypair
+~~~~~~~
+
+    A keypair is a set containing a public and private key. There's a little more to it than that, for example the key used to sign data may be different from either, so that as you rotate keypairs you can keep the same signing key and allow people to continue verifying messages you may have sent in the past, with different keypairs. The public key can be freely handed out and pushed to keyservers, but the private key should never be shared with anyone. Data can be encrypted with a public key, but it can only be decrypted with a private key, so anyone who wants to can send you a message using your public key, but only you can decrypt these messages (provided your private key hasn't been compromised).
+
+
