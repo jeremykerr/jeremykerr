@@ -68,4 +68,9 @@ Keypair
 
     A keypair is a set containing a public and private key. There's a little more to it than that, for example the key used to sign data may be different from either, so that as you rotate keypairs you can keep the same signing key and allow people to continue verifying messages you may have sent in the past, with different keypairs. The public key can be freely handed out and pushed to keyservers, but the private key should never be shared with anyone. Data can be encrypted with a public key, but it can only be decrypted with a private key, so anyone who wants to can send you a message using your public key, but only you can decrypt these messages (provided your private key hasn't been compromised).
 
+To generate a keypair, you can use the --gen-key command. It is considered a best practice to create a revocation certificate at the same time you create a key, and back up the revocation certificate, so that if you ever lose control of the key or it is compromised by a third party, you can send the revocation certificate to any keyservers which have your public key, to let them know, and let anyone using your key know, that it can no longer be trusted.
+
+.. code:: bash
+
+    gpg --gen-key
 
