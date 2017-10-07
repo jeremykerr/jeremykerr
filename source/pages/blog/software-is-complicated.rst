@@ -2,7 +2,15 @@
 Software is Complicated
 =======================
 
+.. image:: ../../resources/images/software-is-complicated/01-computer.png
+    :align: center
+    :alt:   silly computer
+
 It’s Sunday morning. After another horrific sunrise, I realize I can’t just lay in bed anymore. It’s too bright for me to enjoy myself. So, casually rolling off the bed and onto the floor, I spring into action. Time to set some goals.
+
+.. image:: ../../resources/images/software-is-complicated/02-rolling-onto-the-floor.png
+    :align: center
+    :alt:   rolling onto floor falling off bed
 
 Goals
 -----
@@ -12,12 +20,20 @@ Goals
 3. Darn it double time, I can’t do step 2 without configuring the firewall on my PC.
 4. Heckin darn it, I haven’t configured the firewall on my laptop yet, so I don’t have a firewall configuration to push to my PC anyway.
 
+.. image:: ../../resources/images/software-is-complicated/03-reaching-to-achieve-my-goals.png
+    :align: center
+    :alt:   reaching for goals climbing up cliff
+
 Time to get to work
 -------------------
 
 Guess I’ll work my way up the list. Fortunately, I took some notes in January about setting up an ideal baseline firewall configuration for my workstations, that can then be tweaked to match changing requirements. It allows all traffic from localhost, allows established connections, allows all outbound traffic, and allows ping requests.
 
 In these notes, the first thing I find is a big heading, “View Rules”, so I start with that. Unexpectedly, I find a whole bunch of Docker rules littered throughout my IPTables rules. Sad! This isn’t bad, in and of itself, but it throws a wrench in the monkey works. If I want to be able to use Docker normally, I have to make sure I don’t blast its rules to kingdom come when I apply my own IPTables firewall using Ansible (which I’ve been applying all of my settings through so I don’t have to go through this brain damage every time I decide to rebuild one of my computers).
+
+.. image:: ../../resources/images/software-is-complicated/04-the-first-unexpected-hurdle.png
+    :align: center
+    :alt:   bit by snake unexpected trouble
 
 A little research on the world wide web shows a rather contentious history around the Docker rules. It appears that in an older version of Docker, binding to a container port would, by default, open up that container to the entire world, not just the network available through an existing IPTables configuration! That’s not desirable at all. My Docker containers should only be exposed if I choose to expose them! Trying not to shake with too much rage, I decide to research how to prevent Docker from doing anything with IPTables. I can come back and punch deliberate holes in my firewall at a later time of my choosing, but security is more important to me than containerization for the time being. Time to add another task to complete.
 
@@ -28,9 +44,13 @@ The Docker documentation shows that if I add a handy “--iptables=false” flag
 I know what I'm doing!
 ----------------------
 
-It looks like in systems using systemd, the daemon lives in “/etc/systemd/system/docker.service.d/”, but that path doesn’t exist for me. I’m running a system using upstart, so my Docker configuration seems to live in “/etc/default/docker”. Neat! Looks like I get to cross item 6 off my list.
+It looks like in systems using systemd, the daemon lives in “/etc/systemd/system/docker.service.d/”, but that path doesn’t exist for me. I’m running a system using upstart, so my Docker configuration seems to live in “/etc/default/docker”. Neat! Looks like I get to cross item 5 off my list.
 
 After writing some Ansible code to add the “--iptables=false” flag to my daemon options, I go ahead and rerun my configuration. I review the file, just to be sure the changes I’d hoped for are correctly implemented, and sure enough, they are! Now, since IPTables rules don’t persist after a reboot, all I have to do is restart my computer and I should be good to go!
+
+.. image:: ../../resources/images/software-is-complicated/05-i-know-what-im-doing.png
+    :align: center
+    :alt:   i know what im doing man programming loudly
 
 Err... Maybe not
 ----------------
@@ -43,6 +63,10 @@ Unfortunately, life is never that easy. After rebooting my computer, I find that
 
 I have no idea what I’m doing.
 
+.. image:: ../../resources/images/software-is-complicated/06-dont-know-what-im-doing.png
+    :align: center
+    :alt:   computer is displeased
+
 Crying and tearing my hair out
 ------------------------------
 
@@ -52,10 +76,18 @@ Naturally, my efforts are futile. Tearing my hair out, I decide to try something
 
 They don’t exist. Screaming incoherently and crying seems like my next best option.
 
+.. image:: ../../resources/images/software-is-complicated/07-tearing-hear-out.png
+    :align: center
+    :alt:   tearing hair out rapidly becoming bald
+
 Naturally, I go back to the documentation. Day of days! It seems that the command “journalctl -u docker.service” should give me the answers I seek. I run that command, and am face to face with the holy grail. My beautiful logs. All 14 lines or so. But there’s nothing remotely useful, other than an “auplink executable not found” warning. My sources online tell me it’s a harmless warning that won’t affect usability, and since the warning takes place when Docker is trying to unmount something, I assume this may be a memory leak at worst. Certainly a concern, but not critical.
 
 Going nuclear
 -------------
+
+.. image:: ../../resources/images/software-is-complicated/08-going-nuclear.png
+    :align: center
+    :alt:   nuclear explosion
 
 Time to take the nuclear option. I drop my flags directly into the daemon startup script. Forget Ansible. Forget the default configuration location. I’m going to figure this out, no matter the cost. Unfortunately, the result is the same. I’m beginning to lose hope that this is an issue I can overcome on my own. Maybe it’s a bug. Finding one post after another where people did exactly what I’m doing and had my desired result doesn’t make me feel any better. By all accounts, I seem to be doing everything exactly right.
 
@@ -65,6 +97,10 @@ I did it!
 ---------
 
 That was it, I’m afraid. Once I used Ansible to apply a settings file in the correct location, with my flags formatted in JSON, everything worked exactly the way I wanted. Now, I can get on with my life and start working on my own firewall, since I don’t have one in my way.
+
+.. image:: ../../resources/images/software-is-complicated/09-i-did-it.png
+    :align: center
+    :alt:   disgruntled man appears traumatized
 
 Too bad the day is almost over. Granted, this didn’t take all day – I worked out, got lunch with my girlfriend, did some grocery shopping, but even so, I’m not expecting to make too much more progress tonight.
 

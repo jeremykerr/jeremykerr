@@ -83,6 +83,9 @@ sub {
   bottom: -.25em;
 }
 img {
+  padding-left: 4em;
+  padding-right: 4em;
+  padding-top: 2em;
   border: 0;
 }
 svg:not(:root) {

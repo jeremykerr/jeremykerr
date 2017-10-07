@@ -63,6 +63,41 @@
             <li>Verifying: Ensuring that a message is signed by the person claiming to have sent it, by validating the signature against their public key.</li>
         </ul>
     </section>
+    <section id="how-to">
+        <h2>How To</h2>
+        <section id="symmetric-encryption">
+            <h3>Symmetric Encryption</h3>
+            <blockquote>
+                <p>Symmetric encryption is encrypting data with a passphrase, rather than with a keypair. Anyone with the passphrase can decrypt the data. To encrypt without doing anything special, you can simply use the -c flag to specify symmetric encryption.</p>
+            </blockquote>
+            <pre data-language="bash"><span></span>gpg -c</pre>
+            <p>If you want to save the encrypted message to a file, you can specify the output file using the -o flag.</p>
+            <pre data-language="bash"><span></span>gpg -c -o /secret/message/file</pre>
+            <p>If you want the output to be in ASCII rather than binary, you can use the -a flag. This is great for if you want to print the message and mail it, or if you just want to be able to copy and paste it more easily.</p>
+            <pre data-language="bash"><span></span>gpg -c -a</pre>
+            <p>Let's say that you want to encrypt an input file, maybe something you wouldn't want to enter manually, such as a PDF or a large file. In that case, you'd want to specify the input file as the last parameter.</p>
+            <pre data-language="bash"><span></span>gpg -c /input/file</pre>
+            <p>In every case, you will be prompted to enter a passphrase to protect your data with.</p>
+            <p>To decrypt a file, use the -d flag. Optionally, you can use the -i flag in order to interactively enter the GPG data to decrypt (like if it was saved as ASCII and you don't want a copy stored on the local filesystem). Otherwise, you can specify the input file as the last parameter, the same as when you're encrypting files.</p>
+            <pre data-language="bash"><span></span>gpg -d -i
+gpg -d /encrypted/input/file</pre>
+        </section>
+        <section id="shared-secret">
+            <h3>Shared Secret</h3>
+            <blockquote>
+                <p>In order to perform symmetric encryption, a shared secret is required. A shared secret is something known to all friendly parties involved in the communication, but not known to any eavesdroppers or malicious third parties.</p>
+                <p>Depending on your use case, you should have a healthy amount of paranoia surrounding your shared secret. If the data you want to protect is of little consequence, or you're just trying to hide communication from a relative or friend, you can probably share a secret over the phone or some other method. If you're worried about three letter agencies or international corporations, you may want to take greater precaution. In that case exchanging a shared secret in person is probably the only reliable method. Because this isn't always feasible, key based encryption may be more desirable.</p>
+            </blockquote>
+        </section>
+        <section id="keypair">
+            <h3>Keypair</h3>
+            <blockquote>
+                <p>A keypair is a set containing a public and private key. There's a little more to it than that, for example the key used to sign data may be different from either, so that as you rotate keypairs you can keep the same signing key and allow people to continue verifying messages you may have sent in the past, with different keypairs. The public key can be freely handed out and pushed to keyservers, but the private key should never be shared with anyone. Data can be encrypted with a public key, but it can only be decrypted with a private key, so anyone who wants to can send you a message using your public key, but only you can decrypt these messages (provided your private key hasn't been compromised).</p>
+            </blockquote>
+            <p>To generate a keypair, you can use the --gen-key command. It is considered a best practice to create a revocation certificate at the same time you create a key, and back up the revocation certificate, so that if you ever lose control of the key or it is compromised by a third party, you can send the revocation certificate to any keyservers which have your public key, to let them know, and let anyone using your key know, that it can no longer be trusted.</p>
+            <pre data-language="bash"><span></span>gpg --gen-key</pre>
+        </section>
+    </section>
 
 
 <div style="text-align:center;margin:2em;">
