@@ -4,13 +4,13 @@ Home
 
 	New here? See `About </pages/about.html>`_.
 
-Blog Posts
-----------
+Blog
+----
 
 - `Software is complicated </pages/blog/software-is-complicated.html>`_ (2017-09-24)
 
-My Notes
---------
+Notes
+-----
 
 - `Raspberry Pi SSH Setup </pages/raspi/initial-setup.html>`_ (2017-02-05)
 - `Python-Command </pages/python-command/python-command.html>`_ (2017-01-24)
