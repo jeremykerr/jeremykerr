@@ -4,8 +4,17 @@
 function createIndex {
     echo "Building index.rst"
 
-    rst2html5 --template ./source/templates/default-template.html \
+    rst2html5 --template ./source/templates/index-template.html \
         ./source/index.rst > ./index.html
+
+    return 0;
+}
+
+function createAbout {
+    echo "Building about.rst"
+
+    rst2html5 --template ./source/templates/about-template.html \
+        ./source/pages/about.rst > ./pages/about.html
 
     return 0;
 }
@@ -17,7 +26,9 @@ function createPages {
         local FULL_DIRECTORY=`dirname ${file}`
         local DIRECTORY=`echo ${FULL_DIRECTORY} | cut -d'/' -f2-`
         local FILENAME=`basename ${file}`
-
+        if [ "$FILENAME" == "about.rst" ]; then
+            continue
+        fi
         echo "Making ${DIRECTORY} if necessary"
         mkdir -p ./${DIRECTORY}
 
@@ -42,6 +53,9 @@ function main {
     createIndex;
     if [ $? != 0 ]; then return 1; fi
 
+    createAbout;
+    if [ $? != 0 ]; then return 1; fi
+    
     createPages;
     if [ $? != 0 ]; then return 1; fi
 
