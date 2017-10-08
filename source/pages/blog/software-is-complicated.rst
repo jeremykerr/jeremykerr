@@ -109,7 +109,7 @@ What have I learned?
 
 So, what have I learned?
 
-1. Software is an ecosystem. If I had installed Docker after setting up a firewall, I probably never would have noticed these IPTables changes, and if I had, I might not have cared. This would have been better for my timeline, but then I wouldn’t have realized how Docker containers are open to the world, and I might have made some glaring mistakes with the security model, built on some false assumptions.
+1. Software is an ecosystem. If I had installed Docker after setting up a firewall, I probably never would have noticed these IPTables changes, and if I had, I might not have cared. This would have been better for my timeline, but then I wouldn’t have realized how Docker containers are open to the world, and I might have made some glaring mistakes with the security model, built on false assumptions.
 
 2. Timelines are extremely difficult. I expected to make some progress today, but instead had a battle of attrition with an existing model. If I were at work, I’d have opened a number of new tickets, and not closed a single one, and even though these issues were important to work through, it would be difficult to explain to nontechnical project leads why I was spending time working with components completely unrelated to the task at hand. However, I learned an incredible amount. My understanding of Docker’s model is more complete, and I have a firewall I can control.
 
