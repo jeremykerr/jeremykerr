@@ -4,7 +4,7 @@
 <head>
 
 <title>J. Kerr</title>
-<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/css/jeremykerr.css">
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,19 +19,19 @@
 <body>
 
 <nav class="navbar navbar-default navbar-static-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
-				data-target="#navigation-header-div" aria-expanded="false">
-				<span class="sr-only"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">JK</a>
-    	</div>
+	<div class="container">
 
-		<div class="collapse navbar-collapse" id="navigation-header-div">
+        <nav class="nav nav-pills flex-column flex-sm-row">
+          <a class="nav-link disabled" href="#">JK</a>
+          <a class="nav-link" href="/index.html">Home</a>
+          <a class="nav-link" href="/pages/blog.html">Blog</a>
+          <a class="nav-link" href="/pages/notes.html">Notes</a>
+          <a class="nav-link" href="https://github.com/jeremykerr">Github</a>
+          <a class="nav-link" href="/pages/interests.html">Interests</a>
+          <a class="nav-link" href="/pages/about.html">About</a>
+        </nav>
+
+		<!--div class="collapse navbar-collapse" id="navigation-header-div">
 			<ul class="nav navbar-nav">
 				<li><a href="/index.html">Home</a></li>
 				<li><a href="/pages/blog.html">Blog</a></li>
@@ -40,12 +40,13 @@
 				<li><a href="https://github.com/jeremykerr">Github</a></li>
 				<li><a href="/pages/interests.html">Interests</a></li>
 			</ul>
-		</div>
+		</div-->
 
 	</div>
 </nav>
 
-
+<div class="container">
+    
     <h1>Raspberry Pi Setup</h1>
     <blockquote>
         <p>This shows how to get a Raspberry Pi available on a local area network in a reasonably secure way. This does not involve configuring the Raspberry Pi in great depth, but merely making the minimum number of changes to ensure that it can be accessed via SSH, using an RSA key-pair, with password authentication disabled and a static IP address set.</p>
@@ -140,6 +141,7 @@ Host    rpi
 $ passwd</pre>
     </section>
 
+</div>
 
 <div style="text-align:center;margin:2em;">
 	&copy; Jeremy Kerr, 2017

@@ -1,0 +1,11 @@
+
+@import "bootstrap.css";
+
+@font-face {
+    font-family: "Oxygen";
+    src: url("/fonts/Oxygen-Regular.ttf");
+}
+
+body {
+    font-family: "Oxygen", "sans-serif";
+}
