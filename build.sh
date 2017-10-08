@@ -19,6 +19,15 @@ function createAbout {
     return 0;
 }
 
+function createBlog {
+    echo "Building blog.rst"
+
+    rst2html5 --template ./source/templates/blog-template.html \
+        ./source/pages/blog.rst > ./pages/blog.html
+
+    return 0;
+}
+
 function createPages {
     for file in `find source/pages/ -name '*.rst'`;
     do
@@ -27,6 +36,9 @@ function createPages {
         local DIRECTORY=`echo ${FULL_DIRECTORY} | cut -d'/' -f2-`
         local FILENAME=`basename ${file}`
         if [ "$FILENAME" == "about.rst" ]; then
+            continue
+        fi
+        if [ "$FILENAME" == "blog.rst" ]; then
             continue
         fi
         echo "Making ${DIRECTORY} if necessary"
@@ -54,6 +66,9 @@ function main {
     if [ $? != 0 ]; then return 1; fi
 
     createAbout;
+    if [ $? != 0 ]; then return 1; fi
+
+    createBlog;
     if [ $? != 0 ]; then return 1; fi
     
     createPages;
