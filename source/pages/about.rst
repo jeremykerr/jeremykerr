@@ -2,11 +2,22 @@
 About
 =====
 
-    I'm a software developer based out of Berkeley, CA. My current interests and skills are Ansible, AWS, Linux, Python, and SQL (specifically PostgreSQL). In general I can pick up new skills quickly. The last book I read was "Simple Steps to Data Encryption" by Peter Loshin. It's a quirky narrative that introduces you to encryption and messaging using GPG, which I plan on using for an IoT platform I'm building in my spare time.
+    I'm a software developer based out of Berkeley, CA. My interests tend to change somewhat organically, but my current skillset is based around Ansible, AWS, Linux, Python, and PostgreSQL. I do keep my eyes on up-and-coming technology though, which you can find under `Interests </pages/interests.html>`_ if you're curious.
 
-    One of the technical books I've enjoyed that had a huge bearing on my software development philosophy was "Infrastructure as Code" by Kief Morris. In it, Kief discusses the strengths and benefits of treating system configurations with the same level of care that you'd treat application code with. Primarily, versioning, templating, deciding what is configurable and what isn't, in order to ensure that software and applications that are launched in a production setting can easily be maintained and understood, and to greatly reduce the burden on operations teams.
+    Books are fun! I like books! If you're looking for good books to read, I'd recommend a few.
 
-    My job involves keeping a few hundred devices online and sending data to an AWS Cloud environment with a few dozen servers with mixed jobs, in order to sell Energy Savings as a Service. As a one-size-fits-all developer on a small team delivering an environmentally friendly offering, I have to be smart about how I do everything in order to keep making forward progress. In the last few years I've had opportunities to work on everything from database administration to AWS management to network security and DNS to full stack application development. I don't claim to be an expert at any one thing, but I do take great pride in a deep skillset I've cultivated for the better part of a decade. This website is a place for me to keep notes, best practices, lessons learned, and anything else I feel might be useful. With any luck, it'll help out others as well.
+    - Lexicon, by Max Barry
+        + Sci-fi novel imagining a world where spoken words have unusual sway over people
+    - Simple Steps to Data Encryption, by Peter Loshin
+        + Whimsical story about Bob, Eve, Mallory, and Alice, their goals and communication
+    - Infrastructure as Code, by Kief Morris
+        + Best practices in the age of cloud infrastructure and repeatable progress
+    - How to Win Friends and Influence People, by Dale Carnegie
+        + Terrific book advising how to get along with nearly anyone, to build lasting relationships
+    - Calvin and Hobbes, by Bill Watterson
+        + Not really a novel or textbook, but the cartoons and philosophy I grew up reading
+
+    I've spent the last several years keeping a few hundred IoT devices online, as well as helping maintain and expand the backend infrastructure. The team I work with sells Energy Savings as a Service - a unique business model where we go into large facilities, install better equipment to save clients money on their energy bill, and then charge for part of the savings to cover our equipment and labor costs.
 
     Best regards,
 
