@@ -2,7 +2,9 @@
 Home
 ====
 
-	New here? See `About </pages/about.html>`_.
+    Hello, and welcome! If, like me, you occassionally find yourself daydreaming about what a herd of birds might accomplish with a little teamwork and some epinephrine, you've come to the right place. I'm a man of science! Like many scientists, I believe in imagination. If you'd like to know a little about me, see `About </pages/about.html>`_. Otherwise, feel free to peruse this site at your liesure. It serves several purposes. First, it gives me a place to blow off steam by blogging about my less-than-graceful attempts to bend computers to my will. Second, it gives me a place to keep quick reference notes on stuff I've learned. Third, it gives me a place to keep track of some of the blogs and technology I'm curious about, but haven't gotten around to yet.
+
+    Please enjoy!
 
 Blog
 ----

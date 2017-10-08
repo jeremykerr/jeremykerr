@@ -54,18 +54,22 @@ Log into the Raspberry Pi, using the default username "pi" and default password 
 .. image:: ../../resources/images/raspi/raspi-config-advanced-options.png
     :align: center
     :alt:   raspi config advanced options
+    :class: img-fluid
 
 .. image:: ../../resources/images/raspi/raspi-config-ssh.png
     :align: center
     :alt:   raspi config select ssh
+    :class: img-fluid
     
 .. image:: ../../resources/images/raspi/raspi-config-enable-ssh.png
     :align: center
     :alt:   raspi config enable ssh
+    :class: img-fluid
 
 .. image:: ../../resources/images/raspi/raspi-config-success.png
     :align: center
     :alt:   raspi config success
+    :class: img-fluid
 
 Finally, reboot the Raspberry Pi to ensure the updated settings take effect. After this, you can unplug the monitor and keyboard, as they are no longer needed.
 
