@@ -72,7 +72,7 @@ Crying and tearing my hair out
 
 So, I go totally bonkers. Reading through the documentation in depth, I apply any and every setting that looks like it might be remotely relevant. IP Forwarding? Disabled. IP masquerading? Disabled. IPv6? Disabled. I’m going all-in, baby. My desperation is climbing to daring new heights.
 
-Naturally, my efforts are futile. Tearing my hair out, I decide to try something I avoid at all costs. Checking the logs. Reading the daemon script, “/etc/init.d/docker”, I find that the log files should be stored in “/var/log/docker”, or “/etc/default/daemon.log”. Feeling fresh hope, I check those files.
+Naturally, my efforts are futile. Tearing my hair out, I decide to try something I normally avoid at all costs. Checking the logs. Reading the daemon script, “/etc/init.d/docker”, I find that the log files should be stored in “/var/log/docker”, or “/etc/default/daemon.log”. Feeling fresh hope, I check those files.
 
 They don’t exist. Screaming incoherently and crying seems like my next best option.
 
