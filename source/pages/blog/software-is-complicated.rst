@@ -15,6 +15,8 @@ It’s Sunday morning. After another horrific sunrise, I realize I can’t just 
 Goals
 -----
 
+In programming, virtualization is a technique where you simulate a computer within a computer. Depending on how you go about virtualization, it can have a number of benefits, from making it easier to repeat something you've done in the past, to running applications that may be insecure within a reasonably secure environment. One platform that can be used to virtualize computing environments is called Xen Hypervisor. It is extremely popular, and is the same software that Amazon Web Services uses to run EC2 instances.
+
 1. Install Xen Hypervisor on my PC.
 2. Darn it, I can’t finish #1 without configuring an internet connection on my PC.
 3. Darn it double time, I can’t do step 2 without configuring the firewall on my PC.
