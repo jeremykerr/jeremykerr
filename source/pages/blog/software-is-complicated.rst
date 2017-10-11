@@ -15,11 +15,20 @@ It’s Sunday morning. After another horrific sunrise, I realize I can’t just 
 Goals
 -----
 
-In programming, virtualization is a technique where you simulate a computer within a computer. Depending on how you go about virtualization, it can have a number of benefits, from making it easier to repeat something you've done in the past, to running applications that may be insecure within a reasonably secure environment. One platform that can be used to virtualize computing environments is called Xen Hypervisor. It is extremely popular, and is the same software that Amazon Web Services uses to run EC2 instances.
+I've heard of this thing called Xen Hypervisor, which can be used to run more than one Operating System on the same PC, but without slowing everything down to a crawl. I've been curious about it for some time, and I know Amazon Web Services uses it, so maybe I'll install that. It's not like I'm doing anything better. It does need to be installed from within a compatible operating system, so I'll install it on my PC.
 
 1. Install Xen Hypervisor on my PC.
+
+The only problem is, my PC needs to be able to download the software, and it can't do that until I set up an internet connection.
+
 2. Darn it, I can’t finish #1 without configuring an internet connection on my PC.
+
+I lied, there's another problem! Before I can configure an internet connection on my PC, I need to set up a firewall, so that I'm not open for the whole damn internet to try and hack me. My life is complicated enough just dealing with the sun in the morning, I don't need computer viruses keeping me up at night too.
+
 3. Darn it double time, I can’t do step 2 without configuring the firewall on my PC.
+
+Shoot, I still haven't made a firewall on my laptop yet, and since I can apply an existing firewall to both my laptop and my PC once I have it set up, I guess I'll start with the laptop, since it's a little easier to develop on.
+
 4. Heckin darn it, I haven’t configured the firewall on my laptop yet, so I don’t have a firewall configuration to push to my PC anyway.
 
 .. image:: ../../resources/images/software-is-complicated/03-reaching-to-achieve-my-goals.png
