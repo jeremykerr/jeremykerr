@@ -17,7 +17,7 @@ About
     - Calvin and Hobbes, by Bill Watterson
         + Not really a novel or textbook, but the cartoons and philosophy I grew up reading
 
-    I'm a proud member of Hitachi Consulting. The team I work with is part of a sustainability initiative, working on an IoT platform to optimize energy consumption to reduce the amount of power that needs to be consumed in order to keep facilities safe and comfortable.
+    I'm a proud member of Hitachi Consulting. The team I work with is part of a sustainability initiative, building an IoT platform to optimize energy consumption to reduce the amount of power that needs to be consumed in order to keep facilities safe and comfortable.
 
     Best regards,
 
