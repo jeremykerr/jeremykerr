@@ -11,7 +11,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>reStructuredText</title>
     <meta charset="utf-8" />
 
 
@@ -52,74 +51,130 @@
 
 <div class="container">
     
-    <h1>reStructuredText</h1>
-    <ul>
-        <li><a href="#installing-rst2pdf">Installing rst2pdf</a></li>
-        <li><a href="#generating-a-pdf">Generating a PDF</a></li>
-        <li><a href="#installing-rst2html5">Installing rst2html5</a></li>
-        <li><a href="#generating-an-html-document">Generating an HTML document</a></li>
-        <li><a href="#creating-a-title">Creating a Title</a></li>
-        <li><a href="#creating-a-link-to-a-title">Creating a Link to a Title</a></li>
-        <li><a href="#creating-a-hyperlink">Creating a Hyperlink</a></li>
-        <li><a href="#ordered-lists">Ordered Lists</a></li>
-        <li><a href="#unordered-lists">Unordered Lists</a></li>
-        <li><a href="#creating-a-paragraph">Creating a Paragraph</a></li>
-        <li><a href="#embedding-an-image">Embedding an image</a></li>
-        <li><a href="#embedding-a-parsed-literal">Embedding a parsed literal</a></li>
-        <li><a href="#embedding-a-code-block">Embedding a code block</a></li>
-    </ul>
-    <section id="installing-rst2pdf">
-        <h2>Installing rst2pdf</h2>
+    <section id="restructuredtext">
+        <h1>reStructuredText</h1>
         <blockquote>
-            <p><em>At the time this was written, rst2pdf does not support Python3, so you need to install it in a Python2 environment.</em></p>
+            <p>reStructuredText (rst) is a text format that can be easily used to generate professional looking PDF or HTML representations, while still being effortless to view and edit in a text editor. It's a great tool for anyone who wants to write documents as quickly as possible with a lot of flexibility, without needing to navigate the complexities of HTML or Latex, and without being stuck working within a graphical environment to support document editing software.</p>
         </blockquote>
-        <pre data-language="bash"><span></span>sudo pip install rst2pdf</pre>
-    </section>
-    <section id="generating-a-pdf">
-        <h2>Generating a PDF</h2>
-        <pre data-language="bash"><span></span>$ rst2pdf path/to/document.rst path/to/output.pdf</pre>
-    </section>
-    <section id="installing-rst2html5">
-        <h2>Installing rst2html5</h2>
-        <blockquote>
-            <p><em>Note that for rst2html5, you can install using Python3, so that's what I used.</em></p>
-        </blockquote>
-        <pre data-language="bash"><span></span>sudo pip3 install rst2html5</pre>
-    </section>
-    <section id="generating-an-html-document">
-        <h2>Generating an HTML document</h2>
-        <pre data-language="bash"><span></span>rst2html5 path/to/document.rst path/to/output.html</pre>
-    </section>
-    <section id="creating-a-title">
-        <h2>Creating a Title</h2>
-        <pre data-language="rst"><span></span><span class="gh">Title</span>
+        <ul>
+            <li><a href="#installing-rst2pdf">Installing rst2pdf</a></li>
+            <li><a href="#generating-a-pdf">Generating a PDF</a></li>
+            <li><a href="#installing-rst2html5">Installing rst2html5</a></li>
+            <li><a href="#generating-an-html-document">Generating an HTML document</a></li>
+            <li><a href="#text-emphasis">Text Emphasis</a></li>
+            <li><a href="#creating-a-title">Creating a Title</a></li>
+            <li><a href="#creating-a-link-to-a-title">Creating a Link to a Title</a></li>
+            <li><a href="#creating-a-hyperlink">Creating a Hyperlink</a></li>
+            <li><a href="#ordered-lists">Ordered Lists</a></li>
+            <li><a href="#unordered-lists">Unordered Lists</a></li>
+            <li><a href="#creating-a-paragraph">Creating a Paragraph</a></li>
+            <li><a href="#embedding-an-image">Embedding an image</a></li>
+            <li><a href="#embedding-a-parsed-literal">Embedding a parsed literal</a></li>
+            <li><a href="#embedding-a-code-block">Embedding a code block</a></li>
+        </ul>
+        <section id="installing-rst2pdf">
+            <h2>Installing rst2pdf</h2>
+            <blockquote>
+                <p>rst2pdf is a tool that can generate PDFs from rst files. At the time of this writing, rst2pdf does not support Python 3, so it needs to be installed in a Python 2 environment. To install rst2pdf, create a Python 2 environment, and use <strong>pip</strong> to add it to your system.</p>
+            </blockquote>
+            <pre data-language="bash"><span></span>$ sudo pip install rst2pdf</pre>
+        </section>
+        <section id="generating-a-pdf">
+            <h2>Generating a PDF</h2>
+            <blockquote>
+                <p>Generating a PDF is a fairly straightforward process, taking the input rst file and producing a nicely formatted PDF file that can be emailed or posted online, and has a more professional look compared to raw rst (text). The command line utility, rst2pdf, takes in two parameters. The first is the input file (formatted as rst), and the second is the desired output location (formatted as a pdf).</p>
+            </blockquote>
+            <pre data-language="bash"><span></span>$ rst2pdf path/to/document.rst path/to/output.pdf</pre>
+        </section>
+        <section id="installing-rst2html5">
+            <h2>Installing rst2html5</h2>
+            <blockquote>
+                <p>rst2html5 is a tool that can generate HTML5 documents from rst files. Unlike rst2pdf, at the time of this writing, rst2html5 does support Python 3, so it can be installed in any up to date Python environment. In the example below, I used the <strong>pip3</strong> command, which is the Python 3 version of <strong>pip</strong>. If you prefer to work in Python 2, feel free to simply use <strong>pip</strong>.</p>
+            </blockquote>
+            <pre data-language="bash"><span></span>$ sudo pip3 install rst2html5</pre>
+        </section>
+        <section id="generating-an-html-document">
+            <h2>Generating an HTML document</h2>
+            <blockquote>
+                <p>Generating HTML is as straightforward as generating a PDF. Just like with PDF generation, the command line utility rst2html5 takes two parameters. The first is the input file (formatted as rst), and the second is the output filepath (formatted as HTML).</p>
+            </blockquote>
+            <pre data-language="bash"><span></span>$ rst2html5 path/to/document.rst path/to/output.html</pre>
+        </section>
+        <section id="text-emphasis">
+            <h2>Text Emphasis</h2>
+            <blockquote>
+                <p>There are a number of options for text emphasis in rst, though only bold and italics are included here. Text can be made bold by adding two asterisks on either side of the text you want to make bold.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span>This is how you make <span class="gs">**bold**</span> text.</pre>
+            <p>This is how you make <strong>bold</strong> text.</p>
+            <blockquote>
+                <p>Italics are similar, except you only need one asterisk on each side.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span>This is how you make <span class="ge">*italic*</span> text.</pre>
+            <p>This is how you make <em>italic</em> text.</p>
+        </section>
+        <section id="creating-a-title">
+            <h2>Creating a Title</h2>
+            <blockquote>
+                <p>In order to structure a document with logical sections and subsections, you can use equals symbols, dashes, and tildes, underlining the line of text you want to make a section or subsection header. Whichever is used first will be the symbol used for making titles in documents, whichever is used second will be the symbol used for making section headers, and whichever is used third will be the symbol for making subsection headers.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span><span class="gh">Title</span>
 <span class="gh">=====</span>
 
-<span class="gh">Subtitle 1</span>
-<span class="gh">----------</span>
+Introduction text might go here.
 
-<span class="gh">Subtitle 2</span>
-<span class="gh">~~~~~~~~~~</span></pre>
+<span class="gh">Section Header</span>
+<span class="gh">--------------</span>
+
+Maybe some definitions will go here.
+
+<span class="gh">Subsection Header</span>
+<span class="gh">~~~~~~~~~~~~~~~~~</span>
+
+This could dive into a topic in more depth.</pre>
+        </section>
     </section>
-    <section id="creating-a-link-to-a-title">
-        <h2>Creating a Link to a Title</h2>
-        <pre data-language="rst"><span></span><span class="s">`Title`_</span>
-<span class="s">`Subtitle 1`_</span>
-<span class="s">`Subtitle 2`_</span></pre>
-    </section>
-    <section id="creating-a-hyperlink">
-        <h2>Creating a Hyperlink</h2>
-        <pre data-language="rst"><span></span><span class="s">`Label </span><span class="si">&lt;hyperlink.html&gt;</span><span class="s">`_</span></pre>
-    </section>
-    <section id="ordered-lists">
-        <h2>Ordered Lists</h2>
-        <pre data-language="rst"><span></span><span class="m">1.</span> First
+    <section id="title">
+        <h1>Title</h1>
+        <p>Introduction text might go here.</p>
+        <section id="section-header">
+            <h2>Section Header</h2>
+            <p>Maybe some definitions will go here.</p>
+            <section id="subsection-header">
+                <h3>Subsection Header</h3>
+                <p>This could dive into a topic in more depth.</p>
+            </section>
+        </section>
+        <section id="creating-a-link-to-a-title">
+            <h2>Creating a Link to a Title</h2>
+            <blockquote>
+                <p>In case you want to create a table of contents, or link one part of a document to a different section, you can create links using back ticks and underscores, as shown below.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span><span class="s">`Title`_</span>
+<span class="s">`Section Header`_</span>
+<span class="s">`Subsection Header`_</span></pre>
+            <p><a href="#title">Title</a> <a href="#section-header">Section Header</a> <a href="#subsection-header">Subsection Header</a></p>
+        </section>
+        <section id="creating-a-hyperlink">
+            <h2>Creating a Hyperlink</h2>
+            <blockquote>
+                <p>Creating hyperlinks is a lot like creating links to sections, with the addition of a hyperlink following the text you want to display, enclosed in less than and greater than symbols.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span><span class="s">`Jeremy&#39;s Blog </span><span class="si">&lt;jeremykerr.me/pages/blog/blog.html&gt;</span><span class="s">`_</span></pre>
+            <p><a href="jeremykerr.me/pages/blog/blog.html">Jeremy's Blog</a></p>
+        </section>
+        <section id="ordered-lists">
+            <h2>Ordered Lists</h2>
+            <blockquote>
+                <p>Ordered lists can be created using a number of sequential options - upper and lowercase letters, numbers, and Roman numerals are a few examples. There may be more.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span><span class="m">1.</span> First
 <span class="m">2.</span> Second
 <span class="m">3.</span> Third
 
 <span class="m">I.</span> First
 <span class="m">II.</span> Second
-<span class="m">III.</span> Third.
+<span class="m">III.</span> Third
 
 <span class="m">i.</span> First
 <span class="m">ii.</span> Second
@@ -132,43 +187,125 @@ B. Banana
 a. aardvark
 b. banana
 <span class="m">c.</span> chili</pre>
-    </section>
-    <section id="unordered-lists">
-        <h2>Unordered Lists</h2>
-        <pre data-language="rst"><span></span><span class="m">-</span> Bullet
-<span class="m">+</span> Bullet
-<span class="m">*</span> Bullet</pre>
-    </section>
-    <section id="creating-a-paragraph">
-        <h2>Creating a Paragraph</h2>
-        <pre data-language="rst"><span></span>This is not a paragraph.
+            <ol type="1">
+                <li>First</li>
+                <li>Second</li>
+                <li>Third</li>
+            </ol>
+            <ol type="I">
+                <li>First</li>
+                <li>Second</li>
+                <li>Third</li>
+            </ol>
+            <ol type="i">
+                <li>First</li>
+                <li>Second</li>
+                <li>Third</li>
+            </ol>
+            <ol type="A">
+                <li>Aardvark</li>
+                <li>Banana</li>
+                <li>Chili</li>
+            </ol>
+            <ol type="a">
+                <li>aardvark</li>
+                <li>banana</li>
+                <li>chili</li>
+            </ol>
+        </section>
+        <section id="unordered-lists">
+            <h2>Unordered Lists</h2>
+            <blockquote>
+                <p>Unordered lists can be created using dashes, plus symbols, and stars. Both ordered and unordered lists can be nested within each other, so you can place an ordered list as a sublist for an unordered list, and vice versa, as well as nesting ordered lists within ordered lists and unordered lists within unordered lists.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span><span class="m">-</span> Bullet point 1
+<span class="m">-</span> Bullet point 2
+<span class="m">-</span> Bullet point 3
 
-    This is a paragraph. <span class="ge">*Italics*</span>. <span class="gs">**Bold**</span>.</pre>
-    </section>
-    <section id="embedding-an-image">
-        <h2>Embedding an image</h2>
-        <pre data-language="rst"><span></span><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> path/to/img.jpg
-    <span class="nc">:height:</span> <span class="nf">100px</span>
-    <span class="nc">:width:</span>  <span class="nf">100px</span>
-    <span class="nc">:scale:</span>  <span class="nf">100%</span>
-    <span class="nc">:alt:</span>    <span class="nf">alternate text</span>
-    <span class="nc">:align:</span>  <span class="nf">center</span></pre>
-    </section>
-    <section id="embedding-a-parsed-literal">
-        <h2>Embedding a parsed literal</h2>
-        <blockquote>
-            <p><em>This is useful when you need to use escape characters.</em></p>
-        </blockquote>
-        <pre>.. parsed-literal::
+<span class="m">-</span> Top bullet point
+    <span class="m">+</span> Nested bullet point 1
+    <span class="m">+</span> Nested bullet point 2
 
-    Text exists, may include characters that need escaping</pre>
-    </section>
-    <section id="embedding-a-code-block">
-        <h2>Embedding a code block</h2>
-        <pre data-language="rst"><span></span><span class="p">..</span> <span class="ow">code</span><span class="p">::</span> <span class="k">python</span>
+<span class="m">*</span> Top bullet point
+    <span class="m">1.</span> Nested bullet point 1
+    <span class="m">2.</span> Nested bullet point 2</pre>
+            <ul>
+                <li>Bullet point 1</li>
+                <li>Bullet point 2</li>
+                <li>Bullet point 3</li>
+                <li>
+                    <dl>
+                        <dt>Top bullet point</dt>
+                        <dd>
+                            <ul>
+                                <li>Nested bullet point 1</li>
+                                <li>Nested bullet point 2</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <dl>
+                        <dt>Top bullet point</dt>
+                        <dd>
+                            <ol type="1">
+                                <li>Nested bullet point 1</li>
+                                <li>Nested bullet point 2</li>
+                            </ol>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </section>
+        <section id="creating-a-paragraph">
+            <h2>Creating a Paragraph</h2>
+            <blockquote>
+                <p>In rst, to create a paragraph, all you have to do is indent text. Paragraphs are formatted normally instead of being included as raw text on a page.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span>Here is some raw text on a page.
+
+    This text is formatted as a paragraph.</pre>
+        </section>
+        <section id="embedding-an-image">
+            <h2>Embedding an image</h2>
+            <blockquote>
+                <p>Images can be formatted using rst, and optional parameters can be included to define how the image is displayed, if there is alternate text included if the image isn't found or fails to download, and to add any HTML classes that may be useful for connecting to CSS.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> ../../resources/images/blog-logo.png
+    <span class="nc">:height:</span> <span class="nf">250px</span>
+    <span class="nc">:width:</span> <span class="nf">200px</span>
+    <span class="nc">:align:</span> <span class="nf">center</span>
+    <span class="nc">:alt:</span>   <span class="nf">blog logo</span></pre>
+            <img src="../../resources/images/blog-logo.png" align="center" width="200px" alt="blog logo" height="250px" />
+            <pre data-language="rst"><span></span><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> ../../resources/images/logo.png
+    <span class="nc">:scale:</span> <span class="nf">100%</span>
+    <span class="nc">:alt:</span> <span class="nf">main logo</span>
+    <span class="nc">:align:</span> <span class="nf">center</span>
+    <span class="nc">:class:</span> <span class="nf">example-css-class</span></pre>
+            <img src="../../resources/images/logo.png" align="center" scale="100" class="example-css-class" alt="main logo" />
+        </section>
+        <section id="embedding-a-parsed-literal">
+            <h2>Embedding a parsed literal</h2>
+            <blockquote>
+                <p>If you have characters that would ordinarily need escaping, or you have something you want included within a nicely formatted block, a parsed literal is a good way to accomplish that.</p>
+            </blockquote>
+            <pre>.. parsed-literal::
+
+    This text includes some \*\*bold\*\* and \*italic\* text, but it is not displayed as formatted, because the asterisks are escaped.</pre>
+            <pre>This text includes some **bold** and *italic* text, but it is not displayed as formatted, because the asterisks are escaped.</pre>
+        </section>
+        <section id="embedding-a-code-block">
+            <h2>Embedding a code block</h2>
+            <blockquote>
+                <p>Similar to parsed literals, code blocks are a good way to format code, and depending on the engine you use to create PDF files or HTML files from rst, may cause syntax highlighting that matches what you might expect when you work within an integraded development environment.</p>
+            </blockquote>
+            <pre data-language="rst"><span></span><span class="p">..</span> <span class="ow">code</span><span class="p">::</span> <span class="k">python</span>
 
     <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
         <span class="k">return</span> <span class="s2">&quot;bar&quot;</span></pre>
+        </section>
     </section>
 
 </div>
