@@ -17,7 +17,7 @@ About
     - Calvin and Hobbes, by Bill Watterson
         + Not really a novel or textbook, but the cartoons and philosophy I grew up reading
 
-    I've spent the last several years keeping a few hundred IoT devices online, as well as helping maintain and expand the backend infrastructure. The team I work with sells Energy Savings as a Service - a unique business model where we go into large facilities, install better equipment to save clients money on their energy bill, and then charge for part of the savings to cover our equipment and labor costs.
+    I'm a proud member of Hitachi Consulting. The team I work with is part of a sustainability initiative, working on an IoT platform to optimize energy consumption to reduce the amount of power that needs to be consumed in order to keep facilities safe and comfortable.
 
     Best regards,
 
