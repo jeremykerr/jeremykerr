@@ -2,45 +2,73 @@
 Raspberry Pi Setup
 ==================
 
-    This shows how to get a Raspberry Pi available on a local area network in a reasonably secure way. This does not involve configuring the Raspberry Pi in great depth, but merely making the minimum number of changes to ensure that it can be accessed via SSH, using an RSA key-pair, with password authentication disabled and a static IP address set.
-    
-Flash Image to Micro SD Card
-----------------------------
+    A Raspberry Pi is a computer, roughly the size of a cell phone, that can be used to run Linux, power internet of things applications, or even serve as a low power personal computer (mostly good for things like watching Youtube videos or doing simple text editing). These devices are inexpensive, which makes them great resources for learning computer science, simulating network applications, and launching low resource applications. They can be used to run Minecraft servers, web applications, databases, and even have first class support for containerization using Docker.
 
-First, download the image you want to use. I used the Jessie Lite image available from the official Raspberry Pi website (Raspian). After downloading the image, verify that the signature matches the signature displayed on the site in order to ensure that you haven't downloaded a modified image from a malicious entity.
+    This document explains how to get a Raspberry Pi connected to a home network, in a reasonably secure way. This will not go into very much depth for configuration of the Raspberry Pi, but will instead aim to make the minimum number of changes to get the device online over SSH, using an RSA keypair for authentication instead of a password.
+
+- `Getting and Verifying an OS`_
+- `Flashing the Image to a micro SD card`_
+- `Power on the Pi`_
+
+Getting and Verifying an OS
+---------------------------
+
+    Getting an operating system loaded onto a Raspberry Pi is a relatively straightforward process. Because each Pi uses a micro SD card as its hard drive, all you have to do is copy a preconfigured operating system onto the micro SD card, plug the SD card into your Raspberry Pi, and power it on.
+
+    There are a number of available operating systems. This tutorial assumes you're working with one of the officially supported Raspbian images, but if you prefer, you can install a different platform, such as CentOS or Kali Linux. As far as I know, no operating system aside from official Raspbian images include the **raspi-config** program, so if you do use a different platform, you'll have to figure things out for yourself.
+
+    First, download the image you want to use. I prefer the *Lite* version of whatever the latest Raspbian build is - currently, it looks like they're on Stretch. You can download the image from `the official site <https://www.raspberrypi.org/downloads/raspbian/>`_. It's considered a good practice to verify the signature to ensure your download checksum matches the published checksum. You can do this by running the **sha256sum** command (or the equivalent for whatever algorithm they used to generate the checksum with) against the file, and comparing it to the published checksum, which should be on the website you downloaded the image from.
 
 .. code:: bash
 
-    $ sha1sum 2017-01-11-raspbian-jessie-lite.zip
+    $ sha256sum 2017-09-07-raspbian-stretch-lite.zip
 
-Next, check which devices are currently mounted on your machine.
+Once you've verified your OS, you can go ahead and decompress it. If it's stored as a **zip** archive, you can do this using the **unzip** command.
+
+.. code:: bash
+
+    $ unzip 2017-09-07-raspbian-stretch-lite.zip
+
+This should create a new file with the same name, but a **img** extension instead of **zip**. In my case, the file is called **2017-09-07-raspbian-stretch-lite.img**
+
+Flashing the Image to a micro SD card
+-------------------------------------
+
+    Before flashing the device, you need to check and see which filesystems are currently mounted on your machine. You can do this using the **df** (disk format) command. The reason you're checking to see which filesystems are mounted on your machine is that these filesystems are all in use, and if you write the Raspbian image onto one of them, you run the risk of catastrophic data loss or trashing the OS on your workstation. We want to avoid these outcomes.
 
 .. code:: bash
 
     $ df -h
 
-Plug your micro SD card into your computer and rerun the command. Find the new file system or systems that were mounted. Generally, if it's a blank SD card, you'll only see one new file system, but if you've flashed an image to it, you'll see two. In my case, I was reflashing an SD card, so I saw /dev/sdc1 and /dev/sdc2.
+Now, plug your micro SD card into your machine (or into an adapter, which you can then plug into your machine), and run the same command a second time to see which new filesystem was added. This filesystem is on the disk you'll eventually want to flash the image to. If you've used the SD card before, you may see more than one filesystem added, such as **/dev/sdc1** and **/dev/sdc2**. If this is the case, record all new filesystems that appear, since we'll need to unmount each of them in order to use the full SD card.
 
 .. code:: bash
 
     $ df -h
 
-Unmount the file systems that are associated to your SD card. Be careful not to unmount any of the original filesystems you saw - if you accidentally unmount your primary or any other filesystems, you may wind up overwriting them, losing any data that may have been stored.
+Unmount the file systems that are associated to your SD card. Be careful not to unmount any of the original filesystems you saw, only unmount the new ones. You will also want to record the basename of the filesystems that you unmount. This represents the disk, or SD card, and will be everything before the integer, so if your filesystem is **/dev/sdc1**, your disk will be **/dev/sdc**.
 
 .. code:: bash
 
     $ umount /dev/sdc1
     $ umount /dev/sdc2
 
-Unzip the file image and flash it to the SD card. If the filesystems were called /dev/sdc1, /dev/sdc2, etc., the disk can be referenced as /dev/sdc. Basically take the basename, without the file system index (the integer at the end).
+At last, we can flash the image to the SD card. Use the **dd** utility to flash the image. **dd** takes several parameters. **bs=4M** tells the utility to write up to four megabytes at a time. **if=2017-09-07-raspbian-stretch-lite.img** tells the utility that the file we're writing as an image is the one we just decompressed. **of=/dev/sdc** tells the utility that the drive we want to write to is the one we've just unmounted all filesystems from.
 
 .. code:: bash
 
-    $ unzip 2017-01-11-raspbian-jessie-lite.zip
     $ sudo dd bs=4M if=2017-01-11-raspbian-jessie-lite.img of=/dev/sdc
+
+Finally, we should run **sync** to ensure any buffers are cleared, so that we don't corrupt the image we just wrote by unplugging the SD card before it is safe to do so. Once this command returns, we can unplug the SD card and plug it into the Raspberry Pi.
+
+.. code:: bash
+
     $ sync
 
-Unplug the SD card and plug it into the Raspberry Pi. Be sure to have a keyboard and monitor plugged into it before powering it on, otherwise they may not be recognized.
+Power on the Pi
+---------------
+
+Before turning the Raspberry Pi on, plug in a keyboard and monitor. We'll need them in order to enable remote access, and the Pi won't recognize these peripherals if we plug them in after booting it up.
 
 Enable SSH
 ----------
@@ -71,14 +99,14 @@ Log into the Raspberry Pi, using the default username "pi" and default password 
     :alt:   raspi config success
     :class: img-fluid
 
-Finally, reboot the Raspberry Pi to ensure the updated settings take effect. After this, you can unplug the monitor and keyboard, as they are no longer needed.
+Finally, reboot the Raspberry Pi to ensure the updated settings take effect. After this, you can unplug the monitor and keyboard, as they are no longer needed. Instead, this time when you boot the Pi up, make sure it has an ethernet cable connecting it to your router.
 
 .. code:: bash
 
     $ sudo shutdown -r now
 
-Give Device a Static IP Address
--------------------------------
+Give Pi Static IP Address
+-------------------------
 
 For many applications, such as running a local web server or API, it is important that the Raspberry Pi has a static internal IP address, so that you don't have to update port forwarding rules or connection details every time your router or Raspberry Pi is rebooted. The easiest way to ensure this is to use your router's administration panel to give your Raspberry Pi a reserved IP address.
 
@@ -86,18 +114,19 @@ The process for this is different for every router, but it should follow somethi
 
 Additionally, you can update the setting in your Raspberry Pi to make sure it always starts with the same IP address. If you do this instead of the DHCP reservation, be sure to pick an IP address outside the DHCP range, so that DHCP doesn't also assign the IP address selected to another device on the network, creating a conflict.
 
-Log into your Raspberry Pi - if you've enabled SSH, you can do this by IP address as follows:
+First, find the IP address of your Raspberry Pi. If you're able to log into your router, you can simply check the list of devices. If not, you can use **arp-scan** to detect all devices on your network, and try each until you find which one is the Pi.
 
 .. code:: bash
 
-    # Update the IP address to be the IP address of your Raspberry Pi
-    # If you don't know the IP address of your Pi, you can use a 
-    #     "sudo arp-scan --localnet" to find all IP addresses on your
-    #     local network and try logging into each of them
-    $ ssh pi@192.168.0.11
-    # <Enter password>
+    $ sudo arp-scan --localnet
 
-Once you've logged in, edit the */etc/dhcpcd.conf* file to set the IP address you want your Raspberry Pi to have. These lines should be appended to the bottom of the file.
+In my case, the IP address was **192.168.0.11**. Now, try to log in.
+
+.. code:: bash
+
+    $ ssh pi@192.168.0.11
+
+Once you've logged in, edit the **/etc/dhcpcd.conf** file to set the IP address you want your Raspberry Pi to have. These lines should be appended to the bottom of the file. You can use whichever terminal editor you like best, I prefer **vi**.
 
 .. code:: bash
 
@@ -108,12 +137,11 @@ Once you've logged in, edit the */etc/dhcpcd.conf* file to set the IP address yo
 
 Note that your values for IP address and routers may be different. If you want the IP address to be in a range, modify the CIDR code associated with the IP address. /32 denotes that there are no bits in the bitmask, so the IP range only contains the one address specified.
 
-After you've done this, reboot your Raspberry Pi, and ensure that it has the same address once it restarts that you specified.
+After you've done this, reboot your Raspberry Pi, and ensure that it comes back online at the IP address you specified.
 
 .. code:: bash
 
     $ sudo shutdown -r now
-    
 
 Establish RSA Public Key Authentication
 ---------------------------------------
