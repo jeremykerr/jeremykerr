@@ -61,6 +61,10 @@
         <li><a href="#getting-and-verifying-an-os">Getting and Verifying an OS</a></li>
         <li><a href="#flashing-the-image-to-a-micro-sd-card">Flashing the Image to a micro SD card</a></li>
         <li><a href="#power-on-the-pi">Power on the Pi</a></li>
+        <li><a href="#enable-ssh">Enable SSH</a></li>
+        <li><a href="#give-pi-static-ip-address">Give Pi Static IP Address</a></li>
+        <li><a href="#establish-rsa-public-key-authentication">Establish RSA Public Key Authentication</a></li>
+        <li><a href="#change-password">Change Password</a></li>
     </ul>
     <section id="getting-and-verifying-an-os">
         <h2>Getting and Verifying an OS</h2>
@@ -157,8 +161,8 @@ Host    rpi
         <pre data-language="bash"><span></span>$ ssh rpi</pre>
         <p>Depending on the default settings, you may need to edit the permissions of your key files before you will be allowed to use them for SSH authentication. In particular, you'll need to remove any permissions held by "group" or "other".</p>
     </section>
-    <section id="changing-the-raspberry-pi-password">
-        <h2>Changing the Raspberry Pi Password</h2>
+    <section id="change-password">
+        <h2>Change Password</h2>
         <p>This is a good policy - change the password from the default. Log into the Pi and run the "passwd" command to update the password. Follow the prompts.</p>
         <pre data-language="bash"><span></span>$ ssh rpi
 $ passwd</pre>

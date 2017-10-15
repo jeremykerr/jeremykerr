@@ -9,6 +9,10 @@ Raspberry Pi Setup
 - `Getting and Verifying an OS`_
 - `Flashing the Image to a micro SD card`_
 - `Power on the Pi`_
+- `Enable SSH`_
+- `Give Pi Static IP Address`_
+- `Establish RSA Public Key Authentication`_
+- `Change Password`_
 
 Getting and Verifying an OS
 ---------------------------
@@ -206,8 +210,8 @@ Now you should be able to log into the Raspberry Pi as follows:
 
 Depending on the default settings, you may need to edit the permissions of your key files before you will be allowed to use them for SSH authentication. In particular, you'll need to remove any permissions held by "group" or "other".
 
-Changing the Raspberry Pi Password
-----------------------------------
+Change Password
+---------------
 
 This is a good policy - change the password from the default. Log into the Pi and run the "passwd" command to update the password. Follow the prompts.
 
