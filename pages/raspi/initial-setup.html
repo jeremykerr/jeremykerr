@@ -64,6 +64,7 @@
         <li><a href="#enable-ssh">Enable SSH</a></li>
         <li><a href="#give-pi-static-ip-address">Give Pi Static IP Address</a></li>
         <li><a href="#establish-rsa-public-key-authentication">Establish RSA Public Key Authentication</a></li>
+        <li><a href="#create-a-host-record">Create a Host Record</a></li>
         <li><a href="#change-password">Change Password</a></li>
     </ul>
     <section id="getting-and-verifying-an-os">
@@ -124,24 +125,22 @@ interface eth0
 static <span class="nv">ip_address</span><span class="o">=</span><span class="m">192</span>.168.0.11/32
 static <span class="nv">routers</span><span class="o">=</span><span class="m">192</span>.168.0.1</pre>
         <p>Note that your values for IP address and routers may be different. If you want the IP address to be in a range, modify the CIDR code associated with the IP address. /32 denotes that there are no bits in the bitmask, so the IP range only contains the one address specified.</p>
-        <p>After you've done this, reboot your Raspberry Pi, and ensure that it comes back online at the IP address you specified.</p>
+        <p>After you've done this, reboot your Raspberry Pi. It should come back online at the IP address you've specified. You can check this through your router, by logging in again, or using a <strong>ping</strong> command.</p>
         <pre data-language="bash"><span></span>$ sudo shutdown -r now</pre>
     </section>
     <section id="establish-rsa-public-key-authentication">
         <h2>Establish RSA Public Key Authentication</h2>
-        <p>On your local machine, generate an RSA Key.</p>
+        <p>Key authentication is generally more secure than password authentication, provided you can keep your key safe. Keys can be protected using a passphrase, which provides an additional measure of security so that even if keys are compromised, they are still protected by this secondary mechanism. In order to do key based authentication, you'll need to create one first. Navigate to the <strong>.ssh</strong> directory on your local machine, and generate a key to use.</p>
         <pre data-language="bash"><span></span>$ <span class="nb">cd</span> ~/.ssh
 $ ssh-keygen -t rsa -b <span class="m">4096</span></pre>
-        <p>Assuming you named it <em>id_rsa</em> and the public key is <em>id_rsa.pub</em>, you need to copy id_rsa.pub over to the Raspberry Pi and append it to the authorized_keys file.</p>
+        <p>This will walk you through some prompts to fill out information about the key. It will ask you for a keyname (defaulting to <strong>id_rsa</strong> and <strong>id_rsa.pub</strong>), a name, and some other optional fields you can fill out to associate with your key. Assuming you named your key <strong>id_rsa</strong>, the public key should be called <strong>id_rsa.pub</strong>. You'll need to copy that file over to the Raspberry Pi and append it to the <strong>.ssh/authorized_keys</strong> file.</p>
         <pre data-language="bash"><span></span>$ <span class="nb">cd</span> ~/.ssh
 $ scp id_rsa.pub pi@192.168.0.11:/home/pi/.ssh/id_rsa.pub
 
 $ ssh pi@192.168.0.11
 $ <span class="nb">cd</span> .ssh
 $ cat id_rsa.pub &gt;&gt; authorized_keys</pre>
-        <p>After this, you'll need to update the ssh settings on your Raspberry Pi.</p>
-        <pre data-language="bash"><span></span>$ vi /etc/ssh/sshd_config</pre>
-        <p>Here, you'll need to change these two lines</p>
+        <p>Next, we want to change the SSH settings so that the SSH daemon knows to look for authorized keys in the <strong>.ssh/authorized_keys</strong> file, and to prevent password authentication (forcing us to log in using our keypair). The file we want to modify is under <strong>/etc/ssh/sshd_config</strong>.</p>
         <pre data-language="bash"><span></span><span class="c1"># Uncomment the line setting the authorized keys file:</span>
 AuthorizedKeysFile      %h/.ssh/authorized_keys
 
@@ -149,17 +148,20 @@ AuthorizedKeysFile      %h/.ssh/authorized_keys
 PasswordAuthentication no</pre>
         <p>Finally, restart the Pi to make these changes take effect.</p>
         <pre data-language="bash"><span></span>$ sudo shutdown -r now</pre>
-        <p>On your local development machine, create a .ssh/config file if none exists, and append the host information for your Raspberry Pi.</p>
-        <pre data-language="bash"><span></span>$ vi ~/.ssh/config
-
-Host    rpi
+    </section>
+    <section id="create-a-host-record">
+        <h2>Create a Host Record</h2>
+        <p>A host record isn't necessary, but it's nice to have, so that when you log into your Pi, you don't have to specify a username, IP address, port number, RSA key, or any other parameters you may need, every time you log in. Instead, you can create an alias to the host parameters and pass the alias to <strong>ssh</strong>. In order to add a host record, append the following lines to <strong>.ssh/config</strong>, or create the file if it doesn't exist. You'll need to change the IP address and RSA key to match your own, as well as any other parameters you may have modified.</p>
+        <pre data-language="bash"><span></span>Host    rpi
     HostName        <span class="m">192</span>.168.0.11
     User            pi
     Port            <span class="m">22</span>
     IdentityFile    ~/.ssh/id_rsa</pre>
         <p>Now you should be able to log into the Raspberry Pi as follows:</p>
         <pre data-language="bash"><span></span>$ ssh rpi</pre>
-        <p>Depending on the default settings, you may need to edit the permissions of your key files before you will be allowed to use them for SSH authentication. In particular, you'll need to remove any permissions held by "group" or "other".</p>
+        <p>Your SSH daemon will probably not let you log in if your RSA keyfile has any file permissions for <strong>group</strong> or <strong>other</strong>. If you find you have any, remove these permissions.</p>
+        <pre data-language="bash"><span></span>$ chmod g-rwx .ssh/id_rsa
+$ chmod o-rwx .ssh/id_rsa</pre>
     </section>
     <section id="change-password">
         <h2>Change Password</h2>

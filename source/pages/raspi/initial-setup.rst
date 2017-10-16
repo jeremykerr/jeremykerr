@@ -12,6 +12,7 @@ Raspberry Pi Setup
 - `Enable SSH`_
 - `Give Pi Static IP Address`_
 - `Establish RSA Public Key Authentication`_
+- `Create a Host Record`_
 - `Change Password`_
 
 Getting and Verifying an OS
@@ -141,7 +142,7 @@ Once you've logged in, edit the **/etc/dhcpcd.conf** file to set the IP address 
 
 Note that your values for IP address and routers may be different. If you want the IP address to be in a range, modify the CIDR code associated with the IP address. /32 denotes that there are no bits in the bitmask, so the IP range only contains the one address specified.
 
-After you've done this, reboot your Raspberry Pi, and ensure that it comes back online at the IP address you specified.
+After you've done this, reboot your Raspberry Pi. It should come back online at the IP address you've specified. You can check this through your router, by logging in again, or using a **ping** command.
 
 .. code:: bash
 
@@ -150,14 +151,14 @@ After you've done this, reboot your Raspberry Pi, and ensure that it comes back 
 Establish RSA Public Key Authentication
 ---------------------------------------
 
-On your local machine, generate an RSA Key.
+Key authentication is generally more secure than password authentication, provided you can keep your key safe. Keys can be protected using a passphrase, which provides an additional measure of security so that even if keys are compromised, they are still protected by this secondary mechanism. In order to do key based authentication, you'll need to create one first. Navigate to the **.ssh** directory on your local machine, and generate a key to use.
 
 .. code:: bash
 
     $ cd ~/.ssh
     $ ssh-keygen -t rsa -b 4096
 
-Assuming you named it *id_rsa* and the public key is *id_rsa.pub*, you need to copy id_rsa.pub over to the Raspberry Pi and append it to the authorized_keys file.
+This will walk you through some prompts to fill out information about the key. It will ask you for a keyname (defaulting to **id_rsa** and **id_rsa.pub**), a name, and some other optional fields you can fill out to associate with your key. Assuming you named your key **id_rsa**, the public key should be called **id_rsa.pub**. You'll need to copy that file over to the Raspberry Pi and append it to the **.ssh/authorized_keys** file.
 
 .. code:: bash
 
@@ -168,13 +169,7 @@ Assuming you named it *id_rsa* and the public key is *id_rsa.pub*, you need to c
     $ cd .ssh
     $ cat id_rsa.pub >> authorized_keys
 
-After this, you'll need to update the ssh settings on your Raspberry Pi.
-
-.. code:: bash
-
-    $ vi /etc/ssh/sshd_config
-
-Here, you'll need to change these two lines
+Next, we want to change the SSH settings so that the SSH daemon knows to look for authorized keys in the **.ssh/authorized_keys** file, and to prevent password authentication (forcing us to log in using our keypair). The file we want to modify is under **/etc/ssh/sshd_config**.
 
 .. code:: bash
 
@@ -190,12 +185,13 @@ Finally, restart the Pi to make these changes take effect.
 
     $ sudo shutdown -r now
 
-On your local development machine, create a .ssh/config file if none exists, and append the host information for your Raspberry Pi.
+Create a Host Record
+--------------------
+
+A host record isn't necessary, but it's nice to have, so that when you log into your Pi, you don't have to specify a username, IP address, port number, RSA key, or any other parameters you may need, every time you log in. Instead, you can create an alias to the host parameters and pass the alias to **ssh**. In order to add a host record, append the following lines to **.ssh/config**, or create the file if it doesn't exist. You'll need to change the IP address and RSA key to match your own, as well as any other parameters you may have modified.
 
 .. code:: bash
 
-    $ vi ~/.ssh/config
-    
     Host    rpi
         HostName        192.168.0.11
         User            pi
@@ -208,7 +204,12 @@ Now you should be able to log into the Raspberry Pi as follows:
 
     $ ssh rpi
 
-Depending on the default settings, you may need to edit the permissions of your key files before you will be allowed to use them for SSH authentication. In particular, you'll need to remove any permissions held by "group" or "other".
+Your SSH daemon will probably not let you log in if your RSA keyfile has any file permissions for **group** or **other**. If you find you have any, remove these permissions.
+
+.. code:: bash
+
+    $ chmod g-rwx .ssh/id_rsa
+    $ chmod o-rwx .ssh/id_rsa
 
 Change Password
 ---------------
