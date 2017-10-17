@@ -19,6 +19,15 @@ function createAbout {
     return 0;
 }
 
+function create404 {
+    echo "Building 404.rst"
+
+    rst2html5 --template ./source/templates/404.html \
+        ./source/404.rst > ./404.html
+
+    return 0;
+}
+
 function createBlog {
     echo "Building blog.rst"
 
@@ -66,6 +75,9 @@ function main {
     if [ $? != 0 ]; then return 1; fi
 
     createAbout;
+    if [ $? != 0 ]; then return 1; fi
+
+    create404;
     if [ $? != 0 ]; then return 1; fi
 
     createBlog;
