@@ -22,7 +22,7 @@ function createAbout {
 function create404 {
     echo "Building error-404.rst"
 
-    rst2html5 --template ./source/templates/error-404.html \
+    rst2html5 --template ./source/templates/error-404-template.html \
         ./source/error-404.rst > ./404.html
 
     return 0;
