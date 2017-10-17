@@ -20,10 +20,10 @@ function createAbout {
 }
 
 function create404 {
-    echo "Building 404.rst"
+    echo "Building error-404.rst"
 
-    rst2html5 --template ./source/templates/404.html \
-        ./source/404.rst > ./404.html
+    rst2html5 --template ./source/templates/error-404.html \
+        ./source/error-404.rst > ./404.html
 
     return 0;
 }
