@@ -32,6 +32,7 @@ Concepts
 --------
 
 - `ACL <https://linux.die.net/man/5/acl>`_
+- `Binary Repository Manager <https://en.wikipedia.org/wiki/Binary_repository_manager>`_
 - `capabilities <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_
 - `inotify <http://man7.org/linux/man-pages/man7/inotify.7.html>`_
 - `LALR parser <https://en.wikipedia.org/wiki/LALR_parser>`_
