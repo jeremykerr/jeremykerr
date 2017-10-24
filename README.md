@@ -6,14 +6,13 @@ This is a site for blogging and notes. All pages are built using rst, and conver
 
 ## Structure
 
-/.git
-/css
-/fonts
-/includes
-/js
-/pages
-/resources
-/source
+- /css
+- /fonts
+- /includes
+- /js
+- /pages
+- /resources
+- /source
 
 ## Updating CSS
 
